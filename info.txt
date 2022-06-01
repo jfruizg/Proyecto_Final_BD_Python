@@ -15,3 +15,15 @@ Instalacion y configuracion del programa
     pip install mysqlclient
 
 
+Integrantes
+
+- Estefania Galindo
+
+- Edgar Torres
+
+- Nicolas Bermudez
+
+- Juan Felipe Ruiz
+
+- Jorge Andres Ramirez
+
