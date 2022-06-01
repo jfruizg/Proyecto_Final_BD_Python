@@ -11,3 +11,7 @@ Instalacion y configuracion del programa
 -Instalar SQLAlchemy
     pip install Flask-SQLAlchemy
 
+- Instalar en modulo 'MySQLdb
+    pip install mysqlclient
+
+
