@@ -1,7 +1,11 @@
 from utils.db import db
 
-#Pare que se creeen las tablas se tiene que generar algun metodo de las rutas
+"""
+Pare que se creen las tablas se tiene que generar algun metodo de las rutas , sea POST - GET
 
+Este archivo alberga la creacion de los modelops de la BD
+
+"""
 class Example(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(100))
