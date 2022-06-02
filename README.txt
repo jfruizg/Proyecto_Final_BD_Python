@@ -31,7 +31,9 @@ GITHUB COMANDOS
 
     -git add . // archivos adicionales
 
-    -git commit -m ""
+    -git commit -m "" // commit , hacer los cambios en la rama o master - tener cuidado donde estas ubicado
+
+    -git push --set-upstream origin Readme_Git // cuando vas hacer el primer git push a la rama
 
 
 
