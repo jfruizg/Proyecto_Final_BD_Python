@@ -21,6 +21,20 @@ Instalacion y configuracion del programa
 - Ingresar al entorno virtual en windows
     ./venv/Scripts/activate
 
+GITHUB COMANDOS
+
+    -git branch // Saber la rama la cual estas ubicado y las demas ramas local
+
+    crear rama
+
+    -git branch Readme_Git
+
+    -git add . // archivos adicionales
+
+    -git commit -m ""
+
+
+
 
 
 Integrantes
