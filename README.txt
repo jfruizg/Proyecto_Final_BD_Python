@@ -35,6 +35,8 @@ GITHUB COMANDOS
 
     -git push --set-upstream origin Readme_Git // cuando vas hacer el primer git push a la rama
 
+    -----
+
 
 
 
