@@ -16,6 +16,6 @@ Se usa el example el cual esta conectado alarchivo inicial por medio del blue pr
 
 """
 
-@example.route("/", methods=['POST', 'GET'])
+@example.route("/home", methods=['POST', 'GET'])
 def home():
     return "hola mundo"
