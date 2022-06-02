@@ -1,7 +1,7 @@
 #blueprint es una forma de conectar los archivos a la base de datos
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_session_captcha import FlaskSessionCaptcha
-from app import recaptcha
+
 
 """
 En esta variable se guarda el nombre el cual se va representar el Blueprint en app.py
@@ -18,14 +18,4 @@ Se usa el example el cual esta conectado alarchivo inicial por medio del blue pr
 
 @example.route("/", methods=['POST', 'GET'])
 def home():
-    return render_template("./User/login.html")
-
-
-@example.route('/submit', methods=['POST'])
-def submit():
-    if recaptcha.verify():
-        flash('New Device Added successfully')
-        return redirect(url_for('register'))
-    else:
-        flash('Error ReCaptcha')
-        return redirect(url_for('register'))
+    return "hola mundo"

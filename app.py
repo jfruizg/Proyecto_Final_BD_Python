@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_recaptcha import ReCaptcha
 from flask_sqlalchemy import SQLAlchemy
 from routes.example import example
+from routes.user import user
 
 
 app = Flask(__name__)
@@ -31,13 +31,5 @@ con el blue print traemos la informacion que se va hacer en la routes
 
 """
 
-app.config.update(dict(
-    RECAPTCHA_ENABLED = True,
-    RECAPTCHA_SITE_KEY = "6LeKOaMZAAAAAI7L6TVsZa9A2t6-9LDVYSVqX9ZP",
-    RECAPTCHA_SECRET_KEY = "6LeKOaMZAAAAAKw9nhAjnpzrzrC3R0YYRf-kKDH1",
-))
-
-recaptcha = ReCaptcha()
-recaptcha.init_app(app)
-
 app.register_blueprint(example)
+app.register_blueprint(user)
