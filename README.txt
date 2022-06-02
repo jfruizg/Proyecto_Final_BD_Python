@@ -18,6 +18,10 @@ Instalacion y configuracion del programa
     pip install -U Flask flask-session-captcha Flask-Sessionstore pymongo
     pip install Flask-reCaptcha
 
+- Ingresar al entorno virtual en windows
+    ./venv/Scripts/activate
+
+
 
 Integrantes
 
