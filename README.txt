@@ -14,6 +14,10 @@ Instalacion y configuracion del programa
 - Instalar en modulo 'MySQLdb
     pip install mysqlclient
 
+- Instalar Catchap
+    pip install -U Flask flask-session-captcha Flask-Sessionstore pymongo
+    pip install Flask-reCaptcha
+
 
 Integrantes
 
