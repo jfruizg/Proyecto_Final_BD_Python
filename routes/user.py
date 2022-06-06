@@ -31,11 +31,11 @@ def home():
         user = User.query.filter_by(username=username).first()
         success_message = 'Bienvenido {}'.format(username)
         flash(success_message)
-        return render_template('./user/index.html', contacts=user)
+        return render_template('./views/User/login.html', sitekey=sitekey)
     else:
         delete_message = 'Hasta luego'
         flash(delete_message)
-        return render_template('./user/register.html', sitekey=sitekey)
+        return render_template('./views/User/Registro.html', sitekey=sitekey)
 
 
 @user.route('/logout')
