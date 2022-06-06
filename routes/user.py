@@ -3,7 +3,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import User, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl,Pension
+from models.model import User, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
 from utils.db import db
 
 user = Blueprint('user', __name__)
