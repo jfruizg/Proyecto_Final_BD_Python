@@ -3,7 +3,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import User, Admin, Empleado, Cliente
+from models.model import User, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl,Pension
 from utils.db import db
 
 user = Blueprint('user', __name__)
@@ -76,6 +76,7 @@ def register():
 
         user = User.query.filter_by(username=username).first()
         user_id = user.id
+
 
         if(user_tipe == 1):
             new_admin = Admin(user_id)
