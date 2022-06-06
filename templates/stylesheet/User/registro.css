@@ -1,0 +1,10 @@
+body{
+    height: 400px;
+    background: url(/templates/Images/user/fondo.jpg);
+    background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center center;
+}
+label, span{
+    color: white;
+}
