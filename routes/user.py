@@ -89,7 +89,7 @@ def register():
         elif(user_tipe == 3):
             new_cliente = Cliente(user_id)
             data_base_add(new_cliente)
-            session['username'] = username
+            session['client'] = username
 
 
 

@@ -16,10 +16,12 @@ class User(db.Model):
     clientes = db.relationship('Cliente')
     admin = db.relationship('Admin')
 
-    def __init__(self, username, password, email):
-        self.username = username
+    def __init__(self, name, password, last_name,user_tipe,username):
+        self.name = name
         self.password = self.__create_password(password)
-        self.email = email
+        self.last_name = last_name
+        self.user_tipe = user_tipe
+        self.username = username
 
     def __create_password(self, password):
         return generate_password_hash(password)
@@ -138,6 +140,9 @@ class Cliente(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    correo = db.Column(db.String(256))
+    direccion = db.Column(db.String(256))
+    telefono = db.Column(db.Integer)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     atiende = db.relationship('Atiende')
     renta = db.relationship('Renta')
