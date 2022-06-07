@@ -12,7 +12,7 @@ Este nombre de la base de datos a ser local cada uno debe tener una
 
 """
 
-uri = 'mysql://root:felipe1972@localhost/proyecto_final_bd'
+uri = 'mysql://root:estefa03@localhost/Proyecto_Final'
 
 """
 Se configura la bd para que el prog pueda acceder
