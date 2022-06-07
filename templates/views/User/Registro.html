@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Registrarse</title>
+        <link rel="shortcut icon" href="templates/Images/logo.ico" type="image/x-icon">
+        <link rel="stylesheet" href="templates/stylesheet/User/registro.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container w-50 bg-primary mt-5 rounded shadow">
+            <div class="row align-items-md-stretch">
+                <div class="col bg-dark p-5 rounded-end">
+                    <div class="text-end">
+                        <img src="/Imagenes/logo.png" width="100" alt="">
+                    </div>
+                    <!--Login-->
+                    <form action="#">
+                        <div class="d-grid">
+                            <h2 style="color: white; text-align: center;">Seleccione su cargo con el que desea registrarse</h2>
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" name="email">
+                            <label class="form-label">Apellido Completo</label>
+                            <input type="text" class="form-control" name="email">
+                            <label class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" name="email">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="email">
+                            <br>
+                        </div>
+                        <label class="form-label">Categoria</label>
+                        <div class="select">
+                            <select>
+                                <option>Cliente</option>
+                                <option>Empleado</option>
+                                <option>Administrador</option>
+                            </select>
+                        </div>
+                        <br><br>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-primary">Aceptar</button>
+                            <br>
+                            <button type="button" class="btn btn-primary" onclick="volver()">Volver</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/JS/Funcionalidad.JS"></script>
+    </body>
+</html>

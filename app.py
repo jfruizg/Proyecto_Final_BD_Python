@@ -1,6 +1,5 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from routes.example import example
+from flask import SQLAlchemy
 from routes.user import user
 
 
@@ -11,8 +10,13 @@ recordar ls sintaxs para llamar la base de datos 'mysql://username:contrasena@lo
 Este nombre de la base de datos a ser local cada uno debe tener una
 
 """
+app.secret_key = 'my_secret_key'
+
 
 uri = 'mysql://root:estefa03@localhost/Proyecto_Final'
+
+uri = 'mysql://root:Dura2558//@localhost/cine'
+
 
 """
 Se configura la bd para que el prog pueda acceder
@@ -30,6 +34,4 @@ con el blue print traemos la informacion que se va hacer en la routes
 "example" - es el nombre que se dio en el ruteo 
 
 """
-
-app.register_blueprint(example)
 app.register_blueprint(user)
