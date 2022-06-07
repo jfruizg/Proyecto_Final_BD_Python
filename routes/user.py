@@ -35,7 +35,7 @@ def home():
     else:
         delete_message = 'Hasta luego'
         flash(delete_message)
-        return render_template('./views/User/Registro.html', sitekey=sitekey)
+        return render_template('./views/User/login.html', sitekey=sitekey)
 
 
 @user.route('/logout')

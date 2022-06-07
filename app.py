@@ -12,7 +12,7 @@ Este nombre de la base de datos a ser local cada uno debe tener una
 """
 app.secret_key = 'my_secret_key'
 
-uri = 'mysql://root:felipe1972@localhost/proyecto_final_bd'
+uri = 'mysql://root:Dura2558//@localhost/cine'
 
 """
 Se configura la bd para que el prog pueda acceder
