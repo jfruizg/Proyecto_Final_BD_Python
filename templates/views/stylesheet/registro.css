@@ -1,9 +1,9 @@
 body{
     height: 400px;
-    background: url(/templates/Images/fondo.jpg);
+    background: url(/templates/views/Images/fondo.jpg);
     background-size: cover;
-  background-repeat:no-repeat;
-  background-position: center center;
+    background-repeat:no-repeat;
+    background-position: center center;
 }
 label, span{
     color: white;
@@ -45,7 +45,7 @@ select::-ms-expand {
   top: 0;
   right: 0;
   padding: 0 1em;
-  background: #000;
+  background: #000000;
   cursor: pointer;
   pointer-events: none;
   transition: .25s all ease;
