@@ -1,5 +1,5 @@
 /*Menu lateral admin*/
-const toggle = document.querySelector(".toggle")
+const toggle = document.querySelector('.toggle')
 const menuDashboard = document.querySelector(".menu-dashboard")
 const iconmenu = document.querySelector("i")
 const enlacesMenu = document.querySelector(".enlace")

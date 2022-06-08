@@ -2,32 +2,32 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import User,Pelicula, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
+from models.model import User,Pelicula, Genre,Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
 from utils.db import db
 
 genre = Blueprint('python_genre_routes', __name__)
 
-@movie.route('/create_moviee', methods=['POST','GET'])
+@genre.route('/create_moviee', methods=['POST','GET'])
 def create():
     if 'admin' in session:
-        title = request.form["title"]
-        year = request.form["year"]
-        genre_id = request.form["genre_id"]
+        genre = request.form["genre"]
+        atiende = request.form["atiende"]
 
-        movie = Pelicula(title, year,genre_id)
 
-        db.session.add(movie)
+        genre = Pelicula(genre, atiende)
+
+        db.session.add(genre)
         db.session.commit()
 
-@movie.route('/show_movie')
+@genre.route('/show_movie')
 def show():
     if 'admin' in session:
-        movies = Pelicula.all()
+        movies = Genre.all()
         return render_template('./comment/show.html', movies=movies)
 
 
 
-@movie.route('/delete_movie/<id>')
+@genre.route('/delete_movie/<id>')
 def delete():
     if 'admin' in session:
         comment = Pelicula.query.get(id)

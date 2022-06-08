@@ -222,6 +222,10 @@ class Genre(db.Model):
     genre = db.Column(db.String(100))
     atiende = db.relationship('Pelicula')
 
+    def __init__(self, genre, atiende):
+        self.genre = genre
+        self.atiende = atiende
+
 class Venta(db.Model):
     __tablename__ = 'ventas'
 
