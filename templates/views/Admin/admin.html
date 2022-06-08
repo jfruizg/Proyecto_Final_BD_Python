@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/Imagenes/logo.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/CSS/admin.css">
+    <link rel="stylesheet" href="/CSS/tablas.css">
+    <script src="/JS/acciones_admin.JS" defer></script>
+    <script src="/JS/redirecciones.js" defer></script>
+    <title>Administrador</title>
+</head>
+<body>
+    <div>
+    <!--Menu desplegable-->
+    <div class="menu-dashboard open">
+        <!--TOP MENU-->
+        <div class="top-menu">
+            <div class="logo">
+                <img src="/Imagenes/logo.png" alt="">
+                <span>Operaciones</span>
+            </div>
+            <div class="toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+        <br><br><br>
+        <!--Menu-->
+        <div class="menu">
+            <div class="enlace">
+                <i class='bx bxs-briefcase' ></i>
+                <span onclick="Function_Empleado()">Empleado</span>
+            </div>
+
+            <div class="enlace">
+                <i class='bx bxs-user'></i>
+                <span onclick="Function_cliente()">Cliente</span>
+            </div>
+
+            <div class="enlace">
+                <i class='bx bxs-book-open' ></i>
+                <span onclick="Function_libro()">Libros</span>
+            </div>
+
+            <div class="enlace">
+                <i class='bx bx-movie' ></i>
+                <span onclick="Function_pelicula()">Peliculas</span>
+            </div>
+
+            <div class="enlace">
+                <i class="bx bx-data"></i>
+                <span>Datos</span>
+            </div>
+            <div class="enlace">
+                <i class='bx bx-exit'></i>
+                <span onclick="cerrarsesion()">Cerrar Sesion</span>
+            </div>
+        </div>
+    </div>
+<!--Pantalla de Administrador-->
+</div>
+<div style="background-color: gray;">
+    <h1 style="color: black;  text-align: right;">BIENVENIDO: </h1>
+</div>
+<div class="item" id="info-empleado">
+    <h1 style="color: black;  text-align: left; text-align: center;">Informacion de empleados</h1>
+    <div class="container">
+    <table class="tabla-empleado" id="tabla_empleado">
+        <thead>
+            <tr>
+                <th style="color: black;">Identificacion</th>
+                <th style="color: black;">Informacion del empleado</th>
+                <th style="color: black;">Informacion dependencia</th>
+                <th style="color: black;">Labor del empleado</th>
+                <th style="color: black;">EPS del empleado</th>
+                <th style="color: black;">ARL del empleado</th>
+                <th style="color: black;">Pension del empleado</th>
+                <th style="color: black;">Fecha de creacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Aqui entra los datos de la tabla-->
+        </tbody>
+    </table>
+    <!--En este pedaso es colocar en el select los datos de los empleados-->
+    <h2 style="color: black;">Por favor escoge al empleado que necesites</h2>
+    <select class="select">
+        <option>AGUDELO ESCOBAR EDWAR DAVID</option>
+        <option>ALARCON CUBIDES JUAN PABLO</option>
+        <option>ANDRADE ROJAS MARIO FERNANDO</option>
+        <option>ARANGO CASTRO RAFAEL ESTEBAN</option>
+        <option>BARON BECERRA WILLIAM ESTEBAN</option>
+        <option>BELTRÁN CASTAÑO LOUIS ALEJANDRO</option>
+        <option>BUITRAGO RIOS JOSE DAVID</option>
+        <option>CABREJO TRUJILLO JUAN DAVID</option>
+        <option>CAMARGO SERRANO ISABELLA</option>
+        <option>CARRASQUILLA BAYTER HENRY SAMUEL</option>
+        <option>CARVAJAL SANABRIA IVAN DAVID</option>
+        <option>CASTRO GIRALDO JUAN MANUEL</option>
+        <option>CASTRO PINILLA JUAN DIEGO</option>
+        <option>CRUZ BALLESTEROS DAYAN ZELENE</option>
+        <option>CRUZ MARTINEZ LUIS ESTEBAN</option>
+        <option>ESCAMILLA BARRERO CRISTIAN CAMILO</option>
+        <option>GIRALDO BRICEÑO SANTIAGO</option>
+        <option>GOMEZ GOMEZ CRISTIAN ALBERTO</option>
+        <option>GONZALEZ BUITRAGO DAVID ORLANDO</option>
+        <option>LOZANO TOVAR JUAN PABLO</option>
+    </select>
+    </div>
+</div>
+<div class="item" id="info-Cliente">
+    <div class="container">
+    <h1 style="color: black;  text-align: left; text-align: center;">Informacion de Clientes</h1>
+    <table class="tabla-empleado" id="tabla_empleado">
+        <thead>
+            <tr>
+                <th style="color: black;">Identificacion</th>
+                <th style="color: black;">nombre de usuario</th>
+                <th style="color: black;">Correo Electronico</th>
+                <th style="color: black;">Direccion</th>
+                <th style="color: black;">Telefono</th>
+                <th style="color: black;">Fecha de creacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Aqui entra los datos de la tabla-->
+        </tbody>
+    </table>
+    <!--En este pedaso es colocar en el select los datos de los Clientes-->
+    <h2 style="color: black;">Por favor escoge al cliente que necesites</h2>
+</div>
+</div>
+<div class="item" id="info-libro">
+    <div class="container-libro">
+    <h1 style="color: black;  text-align: left; text-align: center;">Informacion de Libros</h1>
+    <table class="tabla-empleado" id="tabla_empleado">
+        <thead>
+            <tr>
+                <th style="color: black;">Identificacion</th>
+                <th style="color: black;">Titulo</th>
+                <th style="color: black;">autor</th>
+                <th style="color: black;">Telefono</th>
+                <th style="color: black;">Fecha de creacion</th>
+                <th style="color: black;">Puntuacion Promedio</th>
+                <th style="color: black;">ISBN</th>
+                <th style="color: black;">ISBN13</th>
+                <th style="color: black;">lenguaje de codigo</th>
+                <th style="color: black;">raiting-count</th>
+                <th style="color: black;">Text-review</th>
+                <th style="color: black;">Text-review-count</th>
+                <th style="color: black;">Fecha de publicacion</th>
+                <th style="color: black;">Editor</th>
+                <th style="color: black;">Fecha de creacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Aqui entra los datos de la tabla-->
+        </tbody>
+    </table>
+    <h2 style="color: black;">Por favor escoge al libro que necesites</h2>
+    </div>
+</div>
+<div class="item" id="info-pelicula">
+    <div class="container">
+    <h1 style="color: black;  text-align: left; text-align: center;">Informacion de Peliculas</h1>
+    <table class="tabla-empleado" id="tabla_empleado">
+        <thead>
+            <tr>
+                <th style="color: black;">Identificacion</th>
+                <th style="color: black;">Titulo</th>
+                <th style="color: black;">Año</th>
+                <th style="color: black;">Genero</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Aqui entra los datos de la tabla-->
+        </tbody>
+    </table>
+    <h2 style="color: black;">Por favor escoge la pelicula que necesites</h2>
+    </div>
+</div>
+</body>
+</html>
