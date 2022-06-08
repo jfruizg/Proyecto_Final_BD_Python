@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import SQLAlchemy
 from routes.user import user
+from connection import connections
 
 
 app = Flask(__name__)
@@ -13,9 +14,13 @@ Este nombre de la base de datos a ser local cada uno debe tener una
 app.secret_key = 'my_secret_key'
 
 
+
 uri = 'mysql://root:estefa03@localhost/Proyecto_Final'
 
 uri = 'mysql://root:Dura2558//@localhost/cine'
+
+uri = connections()
+
 
 
 """
