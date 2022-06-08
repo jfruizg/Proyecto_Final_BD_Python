@@ -73,7 +73,7 @@ def login():
     else:
         return redirect(url_for('python_contact_routes.home'))
 
-@user.route('/register', methods=['POST'])
+@user.route('/register', methods=['POST','GET'])
 def register():
 
 
