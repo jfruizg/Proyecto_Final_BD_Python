@@ -225,6 +225,5 @@ class Admin(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, user_id, id):
+    def __init__(self, user_id):
         self.user_id = user_id
-        self.id = id
