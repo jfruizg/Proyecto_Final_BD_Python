@@ -173,8 +173,8 @@ class Libro(db.Model):
     title = db.Column(db.String(100))
     author = db.Column(db.String(100))
     avrege_raiting = db.Column(db.String(100))
-    isbn = db.Column(db.String(100))
-    isbn13 = db.Column(db.String(100))
+    isbn = db.Column(db.String(100), unique=True)
+    isbn13 = db.Column(db.String(100), unique=True)
     language_code = db.Column(db.String(100))
     num_pages = db.Column(db.Integer)
     raiting_count = db.Column(db.Integer)
@@ -185,6 +185,22 @@ class Libro(db.Model):
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     venta = db.relationship('Venta')
 
+    def __init__(self, title, author,avrege_raiting, isbn, isbn13, language_code,num_pages,raiting_count, text_reviews,text_reviews_count, publication_date, publisher):
+        self.title = title
+        self.author = author
+        self.avrege_raiting = avrege_raiting
+        self.isbn = isbn
+        self.isbn13 = isbn13
+        self.language_code = language_code
+        self.num_pages = num_pages
+        self.raiting_count = raiting_count
+        self.text_reviews = text_reviews
+        self.text_reviews_count = text_reviews_count
+        self.publication_date = publication_date
+        self.publisher = publisher
+
+
+
 class Pelicula(db.Model):
     __tablename__ = 'peliculas'
 
@@ -193,6 +209,11 @@ class Pelicula(db.Model):
     year = db.Column(db.Integer)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     renta = db.relationship('Renta')
+
+    def __init__(self, title, year,genre_id):
+        self.title = title
+        self.year = year
+        self.genre_id = genre_id
 
 class Genre(db.Model):
     __tablename__ = 'genres'

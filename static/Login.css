@@ -1,6 +1,7 @@
 body{
     height: 400px;
     background: url('/Images/fondo.jpg');
+    background: url(Images/fondo.jpg);
     background-size: cover;
     height: 100%;
     background-repeat:no-repeat;
@@ -14,6 +15,7 @@ h1{
 }
 .bg{
     background: url('/Images/foto.jpg');
+    background: url(Images/foto.jpg);
     background-size: cover;
     background-position: center center;
 }
