@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from routes.user import user
+from routes.book import book
+from routes.movie import movie
 from connection import connections
 
 
@@ -32,3 +34,5 @@ con el blue print traemos la informacion que se va hacer en la routes
 
 """
 app.register_blueprint(user)
+app.register_blueprint(movie)
+app.register_blueprint(book)

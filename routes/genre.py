@@ -5,9 +5,7 @@ from pip._vendor import requests
 from models.model import User,Pelicula, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
 from utils.db import db
 
-
-movie = Blueprint('python_movie_routes', __name__)
-
+genre = Blueprint('python_genre_routes', __name__)
 
 @movie.route('/create_moviee', methods=['POST','GET'])
 def create():
@@ -36,12 +34,3 @@ def delete():
 
         db.session.delete(comment)
         db.session.commit()
-
-
-
-
-
-
-
-
-
