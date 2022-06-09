@@ -1,0 +1,69 @@
+{% extends 'views/Admin/index.html'%}
+
+{% block navbar %}
+
+<div class="column is-3 " id="column_admin">
+    <aside class="menu is-hidden-mobile">
+        <p class="menu-label">
+            Empleado
+        </p>
+        <ul class="menu-list">
+            <li><a onclick="Function_admin()">Inicio</a></li>
+        </ul>
+
+        <p class="menu-label">
+            Empleado
+        </p>
+        <ul class="menu-list">
+            <li><a onclick="Function_Empleado()">Empleados</a></li>
+            <li>
+                <a>Gestion empleado</a>
+                <ul>
+                    <li><a>Agregar</a></li>
+                    <li><a>Actualizar</a></li>
+                    <li><a>Eliminar</a></li>
+                </ul>
+            </li>
+            <li><a>Other</a></li>
+        </ul>
+        <p class="menu-label">
+            Cliente
+        </p>
+        <ul class="menu-list">
+            <li><a>Clientes</a></li>
+            <li>
+                <a>Gestion Cliente</a>
+                <ul>
+                    <li><a>Agregar</a></li>
+                    <li><a>Actualizar</a></li>
+                    <li><a>Eliminar</a></li>
+                </ul>
+            </li>
+        </ul>
+        <p class="menu-label">
+            Peliculas y Libros
+        </p>
+        <ul class="menu-list">
+            <li>
+                <a>Pelicula</a>
+                <ul>
+                    <li><a>Agregar</a></li>
+                    <li><a>Actualizar</a></li>
+                    <li><a>Eliminar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a>Libros</a>
+                <ul>
+                    <li><a>Agregar</a></li>
+                    <li><a>Actualizar</a></li>
+                    <li><a>Eliminar</a></li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+</div>
+
+{% endblock %}
+
+

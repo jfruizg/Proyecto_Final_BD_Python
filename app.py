@@ -1,7 +1,14 @@
+
 from flask import Flask
 from flask import SQLAlchemy
 from routes.user import user
+from routes.book import book
+from routes.movie import movie
+from routes.empleado import empleado
 from connection import connections
+
+
+
 
 
 app = Flask(__name__)
@@ -30,8 +37,10 @@ Se configura la bd para que el prog pueda acceder
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+
 #Conexion con SLQAlchemy
 SQLAlchemy(app)
+
 
 """
 con el blue print traemos la informacion que se va hacer en la routes
@@ -40,3 +49,6 @@ con el blue print traemos la informacion que se va hacer en la routes
 
 """
 app.register_blueprint(user)
+app.register_blueprint(movie)
+app.register_blueprint(book)
+app.register_blueprint(empleado)

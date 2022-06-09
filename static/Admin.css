@@ -1,0 +1,12 @@
+/*Menu Lateral*/
+
+
+#nav_bar_admin{
+    background-color: #5474ba;
+}
+
+#card_content_filter {
+    display: inline-block;
+    width: 33%;
+    border: 1px;
+}

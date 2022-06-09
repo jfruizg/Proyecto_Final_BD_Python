@@ -1,53 +1,34 @@
 from utils.db import db
 import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
-
-
-class User(db.Model):
-    __tablename__ = 'users'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    password = db.Column(db.String(248))
-    last_name = db.Column(db.String(100))
-    user_tipe = db.Column(db.Integer)
-    username = db.Column(db.String(50), unique=True)
-    empleados = db.relationship('Empleado')
-    clientes = db.relationship('Cliente')
-    admin = db.relationship('Admin')
-
-    def __init__(self, name, password, last_name,user_tipe,username):
-        self.name = name
-        self.password = self.__create_password(password)
-        self.last_name = last_name
-        self.user_tipe = user_tipe
-        self.username = username
-
-    def __create_password(self, password):
-        return generate_password_hash(password)
-
-    def verify_password(self, password):
-        return check_password_hash(self.password, password)
-
 class Empleado(db.Model):
     __tablename__ = 'empleados'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    name = db.Column(db.String(200))
+    last_name = db.Column(db.String(200))
+    sueldo = db.Column(db.Integer)
+    atiende = db.relationship('Atiende')
+    empleado_nomina = db.relationship('EmpleadoNomina')
+    vacaciones = db.relationship('Vacacion')
+    incapacidad = db.relationship('Incapcidad')
+
+    def __init__(self, user_id, id):
+        self.user_id = user_id
+        self.id = id
+
+
+class EmpleadoNomina(db.Model):
+    __tablename__ = 'nomina_empleados'
+
+    id = db.Column(db.Integer, primary_key=True)
+    cod_empleado = db.Column(db.Integer, db.ForeignKey('empleados.id'))
     id_dependencia = db.Column(db.Integer, db.ForeignKey('dependencias.id'))
     id_cargo = db.Column(db.Integer, db.ForeignKey('cargos.id'))
     id_eps = db.Column(db.Integer, db.ForeignKey('eps.id'))
     id_arl = db.Column(db.Integer, db.ForeignKey('arls.id'))
     id_pension = db.Column(db.Integer, db.ForeignKey('pensiones.id'))
-    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    incapacidad = db.relationship('Incapacidad')
-    atiende = db.relationship('Atiende')
-    renta = db.relationship('Renta')
-    venta = db.relationship('Venta')
 
-    def __init__(self, user_id, id):
-        self.user_id = user_id
-        self.id = id
 
 class Dependencia(db.Model):
     __tablename__ = 'dependencias'
@@ -60,6 +41,7 @@ class Dependencia(db.Model):
     def __init__(self, dependencia):
         self.dependencia = dependencia
 
+
 class Cargo(db.Model):
     __tablename__ = 'cargos'
 
@@ -70,6 +52,7 @@ class Cargo(db.Model):
 
     def __init__(self, cargo):
         self.cargo = cargo
+
 
 class Eps(db.Model):
     __tablename__ = 'eps'
@@ -82,6 +65,7 @@ class Eps(db.Model):
     def __init__(self, eps):
         self.eps = eps
 
+
 class Arl(db.Model):
     __tablename__ = 'arls'
 
@@ -92,6 +76,7 @@ class Arl(db.Model):
 
     def __init__(self, arl):
         self.arl = arl
+
 
 class Pension(db.Model):
     __tablename__ = 'pensiones'
@@ -104,53 +89,74 @@ class Pension(db.Model):
     def __init__(self, pension):
         self.pension = pension
 
+
 class Incapacidad(db.Model):
     __tablename__ = 'incapacidad'
 
     id = db.Column(db.Integer, primary_key=True)
     cod_empleado = db.Column(db.Integer, db.ForeignKey('empleados.id'))
-    id_novedad = db.Column(db.Integer, db.ForeignKey('tiponovedad.id'))
+    novedad_incapacidad = db.Column(db.Boolean)
     num_dias = user_tipe = db.Column(db.Integer)
     fecha_inicio = db.Column(db.DateTime, default=datetime.datetime.now())
     fecha_finalizacion = db.Column(db.DateTime)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    tipo_incapacidad = db.relationship('TipoNovedad')
 
-    def __init__(self, cod_empleado,id_novedad, num_dias,fecha_inicio , fecha_finalizacion):
-        self.cod_empleado = cod_empleado
-        self.id_novedad = id_novedad
-        self.num_dias = num_dias
-        self.fecha_inicio = fecha_inicio
-        self.fecha_finalizacion = fecha_finalizacion
-
-
-
-class TipoNovedad(db.Model):
-    __tablename__ = 'tiponovedad'
+class Vacacion(db.Model):
+    __tablename__ = 'vacaciones'
 
     id = db.Column(db.Integer, primary_key=True)
-    incapacidad = db.Column(db.String(256), unique=True)
+    cod_empleado = db.Column(db.Integer, db.ForeignKey('empleados.id'))
+    novedad_vacaciones = db.Column(db.Boolean)
+    num_dias = user_tipe = db.Column(db.Integer)
+    fecha_inicio = db.Column(db.DateTime, default=datetime.datetime.now())
+    fecha_finalizacion = db.Column(db.DateTime)
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, incapacidad):
-        self.incapacidad = incapacidad
+
+class Novedad(db.Model):
+    __tablename__ = 'novedades'
+
+    id = db.Column(db.Integer, primary_key=True)
+    num_dias_trabajados = db.Column(db.Integer)
+    cod_incapacidad = db.Column(db.Integer, db.ForeignKey('incapacidad.id'))
+    cod_vacaciones = db.Column(db.Integer, db.ForeignKey('vacaciones.id'))
+    bonificacion = db.Column(db.Integer)
+    transporte = db.Column(db.Integer)
 
 
 class Cliente(db.Model):
     __tablename__ = 'clientes'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    name = db.Column(db.String(200))
+    last_name = db.Column(db.String(200))
     correo = db.Column(db.String(256))
     direccion = db.Column(db.String(256))
     telefono = db.Column(db.Integer)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     atiende = db.relationship('Atiende')
-    renta = db.relationship('Renta')
-    venta = db.relationship('Venta')
 
     def __init__(self, user_id, id):
         self.user_id = user_id
         self.id = id
+
+
+class Author(db.Model):
+    __tablaname__ = 'autor'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200))
+    last_name = db.Column(db.String(200))
+    libro = db.relationship('Libro')
+
+
+class Publicador(db.Model):
+    __tablaname__ = 'publicadores'
+
+    id = db.Column(db.Integer, primary_key=True)
+    publisher = db.Column(db.String(200))
+    libro = db.relationship('Libro')
+
 
 class Atiende(db.Model):
     __tablename__ = 'atiende'
@@ -161,29 +167,58 @@ class Atiende(db.Model):
     fecha_atencion = db.Column(db.DateTime, default=datetime.datetime.now())
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, id_cliente, id_empleado,fecha_atencion):
+    def __init__(self, id_cliente, id_empleado, fecha_atencion):
         self.id_cliente = id_cliente
         self.id_empleado = id_empleado
         self.fecha_atencion = fecha_atencion
+
 
 class Libro(db.Model):
     __tablename__ = 'libros'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
-    author = db.Column(db.String(100))
     avrege_raiting = db.Column(db.String(100))
-    isbn = db.Column(db.String(100))
-    isbn13 = db.Column(db.String(100))
+    isbn = db.Column(db.String(100), unique=True)
+    isbn13 = db.Column(db.String(100), unique=True)
     language_code = db.Column(db.String(100))
     num_pages = db.Column(db.Integer)
     raiting_count = db.Column(db.Integer)
     text_reviews = db.Column(db.String(100))
     text_reviews_count = db.Column(db.Integer)
     publication_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    publisher = db.Column(db.String(100))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    publisher_id = db.Column(db.Integer, db.ForeignKey('publicadores.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('autor.id'))
     venta = db.relationship('Venta')
+
+    def __init__(self, title, author, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count,
+                 text_reviews, text_reviews_count, publication_date, publisher):
+        self.title = title
+        self.author_id = author
+        self.avrege_raiting = avrege_raiting
+        self.isbn = isbn
+        self.isbn13 = isbn13
+        self.language_code = language_code
+        self.num_pages = num_pages
+        self.raiting_count = raiting_count
+        self.text_reviews = text_reviews
+        self.text_reviews_count = text_reviews_count
+        self.publication_date = publication_date
+        self.publisher_id = publisher
+
+
+class Genre(db.Model):
+    __tablename__ = 'genres'
+
+    id = db.Column(db.Integer, primary_key=True)
+    genre = db.Column(db.String(100))
+    atiende = db.relationship('Pelicula')
+
+    def __init__(self, genre, atiende):
+        self.genre = genre
+        self.atiende = atiende
+
 
 class Pelicula(db.Model):
     __tablename__ = 'peliculas'
@@ -194,12 +229,10 @@ class Pelicula(db.Model):
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     renta = db.relationship('Renta')
 
-class Genre(db.Model):
-    __tablename__ = 'genres'
-
-    id = db.Column(db.Integer, primary_key=True)
-    genre = db.Column(db.String(100))
-    atiende = db.relationship('Pelicula')
+    def __init__(self, title, year, genre_id):
+        self.title = title
+        self.year = year
+        self.genre_id = genre_id
 
 class Venta(db.Model):
     __tablename__ = 'ventas'
@@ -207,7 +240,6 @@ class Venta(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     libro_id = db.Column(db.Integer, db.ForeignKey('libros.id'))
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'))
-    cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'))
 
 
 class Renta(db.Model):
@@ -216,7 +248,8 @@ class Renta(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     pelicula_id = db.Column(db.Integer, db.ForeignKey('peliculas.id'))
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'))
-    cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'))
+
+
 
 class Admin(db.Model):
     __tablename__ = 'admins'
@@ -225,6 +258,5 @@ class Admin(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, user_id, id):
+    def __init__(self, user_id):
         self.user_id = user_id
-        self.id = id
