@@ -1,10 +1,16 @@
 import json
 
+
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import User, Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
+
+from models.model import Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
+from routes.movie import cont_movies
+from routes.book import cont_libro
 from utils.db import db
+
+
 
 user = Blueprint('python_user_routes', __name__)
 sitekey = "6LcnlUUgAAAAAA0QSZbLaxs5zyjXsBwC0JqML1-G"
@@ -28,7 +34,6 @@ def home():
     if 'username' in session:
         username = session['username']
         print(username)
-        user = User.query.filter_by(username=username).first()
         success_message = 'Bienvenido {}'.format(username)
         flash(success_message)
         return render_template('./views/User/login.html', sitekey=sitekey)
@@ -38,8 +43,10 @@ def home():
         return render_template('./views/User/login.html')
     elif 'admin' in session:
         admin = session['admin']
-        print(admin)
-        return render_template('./views/Admin/index.html')
+        cont_movie = cont_movies()
+        cont_libros = cont_libro()
+        all_admin = admins()
+        return render_template('./views/Admin/index.html', admin = admin, empleado = cont_empleados() , cont_movie = cont_movie, cont_libro = cont_libros , admins = all_admin)
     else:
         delete_message = 'Hasta luego'
         flash(delete_message)
@@ -49,6 +56,10 @@ def home():
 @user.route('/log')
 def log():
     return render_template('./views/User/login.html')
+
+@user.route('/admin_empleado')
+def empleado():
+    return render_template('./views/Admin/empleado.html')
 
 @user.route('/logout')
 def logout():
@@ -66,7 +77,6 @@ def login():
     username = request.form['username']
     password = request.form['password']
 
-    user = User.query.filter_by(username=username).first()
     if user is not None and user.verify_password(password):
         session['username'] = username
         return redirect(url_for('python_contact_routes.home'))
@@ -87,17 +97,17 @@ def register():
     if is_human(captcha_response):
 
         if(user_tipe == "Administrador"):
-            data_base_add(name, password, last_name, 1, username)
+
             user_id = get_user_id(username)
             add_empleado(user_tipe,user_id)
             session['admin'] = username
         elif(user_tipe == "Empleado"):
-            data_base_add(name, password, last_name, 2, username)
+
             user_id = get_user_id(username)
             add_empleado(user_tipe,user_id)
             session['username'] = username
         elif(user_tipe == "Cliente"):
-            data_base_add(name, password, last_name, 3, username)
+
             user_id = get_user_id(username)
             add_empleado(user_tipe,user_id)
             session['client'] = username
@@ -112,11 +122,7 @@ def cookie():
     response.set_cookie('custome_cookie', 'Eduardo')
     return response
 
-def data_base_add(name, password, last_name, user_tipe, username):
-    new_user = User(name, password, last_name, user_tipe, username)
 
-    db.session.add(new_user)
-    db.session.commit()
 
 def add_empleado(user_tipe,user_id):
 
@@ -136,9 +142,17 @@ def add_empleado(user_tipe,user_id):
         db.session.commit()
 
 def get_user_id(username):
-    user = User.query.filter_by(username=username).first()
     user_id = user.id
     return user_id
+
+
+def cont_empleados():
+    return Empleado.query.count()
+
+def admins():
+    return user
+
+
 
 
 

@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import User,Pelicula, Libro,Admin, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
+from models.model import Pelicula, Libro, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
 from utils.db import db
 
 
@@ -45,3 +45,6 @@ def delete():
 
         db.session.delete(comment)
         db.session.commit()
+
+def cont_libro():
+    return Libro.query.count()

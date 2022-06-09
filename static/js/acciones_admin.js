@@ -1,28 +1,9 @@
 /*Menu lateral admin*/
-const toggle = document.querySelector('.toggle')
-const menuDashboard = document.querySelector(".menu-dashboard")
-const iconmenu = document.querySelector("i")
-const enlacesMenu = document.querySelector(".enlace")
 
-toggle.addEventListener("click", ()=> {
-    menuDashboard.classList.toggle("open");
-
-    if(iconmenu.classList.contains("bx-menu")){
-        iconmenu.classList.replace("bx-menu", "bx,x")
-    }else{
-        iconmenu.classList.replace("bx-x", "bx-menu")
-    }
-})
-
-enlacesMenu.forEach(enlace => {
-    enlace.addEventListener("click", () =>{
-        menuDashboard.classList.add("open")
-        iconmenu.classList.replace("bx-menu", "bx-x")
-    })
-});
 /*Accion mostrar y ocultar empleado*/
 
 function Function_Empleado() {
+    cerrar_pestana
     var x = document.getElementById("info-empleado");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -30,9 +11,22 @@ function Function_Empleado() {
         x.style.display = "none";
     }
 }
+
+function Function_admin() {
+    var x = document.getElementById("info-admin");
+    cerrar_pestana(x)
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    }else{
+        cerrar_pestana(x)
+    }
+}
+
+
 /*Accion mostrar y ocultar cliente*/
 function Function_cliente() {
     var x = document.getElementById("info-Cliente");
+    cerrar_pestana(x)
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
@@ -43,6 +37,7 @@ function Function_cliente() {
 /*Accion mostrar y ocultar Libros*/
 function Function_libro() {
     var x = document.getElementById("info-libro");
+    cerrar_pestana(x)
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
@@ -52,9 +47,13 @@ function Function_libro() {
 /*Accion mostrar y ocultar Peliculas*/
 function Function_pelicula() {
     var x = document.getElementById("info-pelicula");
+    cerrar_pestana(x)
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
     }
+}
+function cerrar_pestana(ene){
+    ene.style.display = "none";
 }

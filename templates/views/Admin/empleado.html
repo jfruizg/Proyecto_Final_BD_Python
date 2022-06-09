@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,10 +26,16 @@
             color: hsl(0, 0%, 96%);
         }
     </style>
+    <style type="text/css">
+        #agregar,#salud_pension,
+        #datos {
+            display: none;
+        }
+    </style>
 
 </head>
 
-<body>
+
 <nav class="navbar" id="nav_bar_admin">
     <div class="container">
         <div class="navbar-brand">
@@ -68,26 +73,22 @@
     </div>
 </nav>
 </br>
+</br>
 
-<!-- END NAV -->
 <div class="container">
     <div class="columns">
         <div class="column is-1 ">
 
         </div>
         <div class="column is-9">
-            <section class="hero is-info welcome is-small">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            {{ admin.name }}
-                        </h1>
-                        <h2 class="subtitle">
-                            Bienvenido administrador
-                        </h2>
-                    </div>
-                </div>
-            </section>
+            <nav class="breadcrumb nav-center" aria-label="breadcrumbs">
+                <ul>
+                    <li><a onclick="inicio();">Inicio</a></li>
+                    <li><a onclick="agregar();">Agregar</a></li>
+                    <li><a onclick="datos();">Estadisticas</a></li>
+                    <li><a onclick="salud_pension();">Salud y pension</a></li>
+                </ul>
+            </nav>
             <section class="info-tiles">
                 <div class="tile is-ancestor has-text-centered">
                     <div class="tile is-parent">
@@ -116,7 +117,7 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section id="inicio">
                 <div class="column">
                     <div class="card">
                         <header class="card-header">
@@ -128,7 +129,7 @@
                             <div class="container is-fullhd">
 
                                 <article class="tile is-child notification is-info">
-                                    <p class="title">Datatables generales</p>
+                                    <p class="title">Datatables estilo Bulma</p>
                                 </article>
                                 <table id="example" class="table is-striped is-hoverable" style="width:100%">
                                     <thead>
@@ -148,11 +149,11 @@
                                         <td>{{admin.last_name}}</td>
                                         <td>{{admin.username}}</td>
                                         {% if admin.user_tipe == 1 %}
-                                            <td>Admin</td>
+                                        <td>Admin</td>
                                         {% elif admin.user_tipe == 2 %}
-                                            <td>Empleado</td>
+                                        <td>Empleado</td>
                                         {% elif admin.user_tipe == 3 %}
-                                            <td>Cliente</td>
+                                        <td>Cliente</td>
                                         {% endif %}
                                     </tr>
                                     {% endfor %}
@@ -172,6 +173,49 @@
                     </div>
                 </div>
             </section>
+            <section id="agregar">
+                <div class="column">
+                    <div class="card">
+                        <form action="" method="POST">
+                            <input type="text" name="username" placeholder="username">
+                            <input type="text" name="email" placeholder="email">
+                            <input type="password" name="password" placeholder="password">
+                            <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
+                            <br/>
+
+                            <button>
+                                save
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+            <section id="datos">
+                <div class="column">
+                    <div class="card">
+                        aca van los graficos y estadisticas
+                    </div>
+                </div>
+            </section>
+            <section id="salud_pension">
+                <div class="column">
+                    <div class="card">
+                        <form action="" method="POST">
+                            <input type="text" name="username" placeholder="username">
+                            <input type="text" name="email" placeholder="email">
+                            <input type="password" name="password" placeholder="password">
+                            <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
+                            <br/>
+
+                            <button>
+                                save
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
@@ -184,6 +228,33 @@
     });
 </script>
 <script async type="text/javascript" src="../js/bulma.js"></script>
-</body>
+<script type="text/javascript">
+    function inicio() {
+        document.getElementById('inicio').style.display = 'block';
+        document.getElementById('agregar').style.display = 'none';
+        document.getElementById('datos').style.display = 'none';
+        document.getElementById('salud_pension').style.display = 'none';
+    }
 
+    function agregar() {
+        document.getElementById('inicio').style.display = 'none';
+        document.getElementById('agregar').style.display = 'block';
+        document.getElementById('datos').style.display = 'none';
+        document.getElementById('salud_pension').style.display = 'none';
+    }
+
+    function datos() {
+        document.getElementById('inicio').style.display = 'none';
+        document.getElementById('agregar').style.display = 'none';
+        document.getElementById('salud_pension').style.display = 'none';
+        document.getElementById('datos').style.display = 'block';
+    }
+    function salud_pension() {
+        document.getElementById('inicio').style.display = 'none';
+        document.getElementById('agregar').style.display = 'none';
+        document.getElementById('datos').style.display = 'none';
+        document.getElementById('salud_pension').style.display = 'block';
+    }
+</script>
+</body>
 </html>
