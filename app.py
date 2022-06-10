@@ -1,6 +1,6 @@
 
 from flask import Flask
-from flask import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from routes.user import user
 from routes.book import book
 from routes.movie import movie
