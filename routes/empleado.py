@@ -5,24 +5,21 @@ from models.model import Empleado
 empleado = Blueprint('empleado', __name__)
 
 
-@empleado.route("/")
-def ingreso():
-    return "bienvenido"
-
-
-@empleado.route("/new", methods=['POST'])
-def guardar_empleado():
-    id = request.form['id']
-    user_id = request.form['user_id']
-    nuevo_empleado = Empleado(user_id, id)
-    db.session.add(nuevo_empleado)
+@empleado.route("/new_employee", methods=['POST', 'GET'])
+def create_emp():
+    name = request.form['name']
+    last_name = request.form['last_name']
+    username = request.form['username']
+    email = request.form['email']
+    new_emp = Empleado(name, last_name, username, email)
+    db.session.add(new_emp)
     db.session.commit()
 
     return redirect("/")
 
 
 @empleado.route("/delete/<id>")
-def eliminar_empleado(id):
+def delete_emp(id):
     empleado = Empleado.query.get(id)
     db.session.delete(empleado)
     db.session.commit()
@@ -30,7 +27,7 @@ def eliminar_empleado(id):
 
 
 @empleado.route("/update/<id>", methods=['POST', 'GET'])
-def actualizar_empleado(id):
+def update_emp(id):
     empleado = Empleado.query.get(id)
     if request.method == 'POST':
 
@@ -43,6 +40,11 @@ def actualizar_empleado(id):
 
         return render_template('index.html', empleado=empleado)
 
+
+@empleado.route("/show_emp")
+def show_emp():
+    empleado = Empleado.all()
+    return render_template('./comment/show.html', empleado=empleado)
 
 
 def cont_empleados():

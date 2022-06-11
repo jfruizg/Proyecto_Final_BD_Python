@@ -3,6 +3,8 @@ from enum import unique
 from sqlalchemy import true
 from utils.db import db
 import datetime
+
+
 class Empleado(db.Model):
     __tablename__ = 'empleados'
 
@@ -18,7 +20,7 @@ class Empleado(db.Model):
     vacaciones = db.relationship('Vacacion')
     incapacidad = db.relationship('Incapcidad')
 
-    def __init__(self, name, last_name,username, email):
+    def __init__(self, name, last_name, username, email):
         self.name = name
         self.last_name = last_name
         self.username = username
@@ -107,7 +109,7 @@ class Incapcidad(db.Model):
     fecha_inicio = db.Column(db.DateTime, default=datetime.datetime.now())
     fecha_finalizacion = db.Column(db.DateTime)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    
+
     def __init__(self, cod_empleado):
         self.cod_empleado = cod_empleado
 
@@ -148,13 +150,14 @@ class Cliente(db.Model):
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     atiende = db.relationship('Atiende')
 
-    def __init__(self, name, last_name,correo,direccion,username,telefono):
+    def __init__(self, name, last_name, correo, direccion, username, telefono):
         self.name = name
         self.last_name = last_name
         self.correo = correo
         self.direccion = direccion
         self.username = username
         self.telefono = telefono
+
 
 class Atiende(db.Model):
     __tablename__ = 'atiende'
@@ -169,7 +172,8 @@ class Atiende(db.Model):
         self.id_cliente = id_cliente
         self.id_empleado = id_empleado
         self.fecha_atencion = fecha_atencion
-        
+
+
 class Genre(db.Model):
     __tablename__ = 'genres'
 
@@ -177,47 +181,45 @@ class Genre(db.Model):
     genre_name = db.Column(db.String(250))
     pelicula = db.relationship("Pelicula")
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-     
+
+
 class Pelicula(db.Model):
     __tablename__ = 'peliculas'
-     
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     year = db.Column(db.Integer)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    
-    
-class Autor(db.Model): 
+
+
+class Autor(db.Model):
     __tablename__ = 'autores'
-    
-    id = db.Column(db.Integer, primary_key=True)  
+
+    id = db.Column(db.Integer, primary_key=True)
     author_complete_name = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     pelicula = db.relationship("Libro")
-    
+
     def __init__(self, author_complete_name):
         self.author_complete_name = author_complete_name
-        
-    
-    
-    
 
-class Publicador(db.Model):  
-    __tablename__ = 'publicadores' 
-    
-    id = db.Column(db.Integer, primary_key=True)  
+
+class Publicador(db.Model):
+    __tablename__ = 'publicadores'
+
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200))
-    created_date = db.Column(db.DateTime, default=datetime.datetime.now())   
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     pelicula = db.relationship("Libro")
-    
+
     def __init__(self, name):
         self.name = name
-   
-    
+
+
 class Libro(db.Model):
-    __tablename__ = 'libros' 
-    
+    __tablename__ = 'libros'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     avrege_raiting = db.Column(db.String(100))
@@ -233,8 +235,9 @@ class Libro(db.Model):
     publisher_id = db.Column(db.Integer, db.ForeignKey('publicadores.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('autores.id'))
     venta = db.relationship('Venta')
-    
-    def __init__(self, title,avrege_raiting,isbn,isbn13,language_code,num_pages,raiting_count,text_reviews,text_reviews_count,publisher_id,author_id):
+
+    def __init__(self, title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
+                 text_reviews_count, publisher_id, author_id):
         self.title = title
         self.avrege_raiting = avrege_raiting
         self.isbn = isbn
@@ -246,12 +249,8 @@ class Libro(db.Model):
         self.text_reviews_count = text_reviews_count
         self.publisher_id = publisher_id
         self.author_id = author_id
-    
-    
-  
-    
-    
-    
+
+
 class Venta(db.Model):
     __tablename__ = 'ventas'
 
@@ -268,7 +267,6 @@ class Renta(db.Model):
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleados.id'))
 
 
-
 class Admin(db.Model):
     __tablename__ = 'admins'
 
@@ -279,17 +277,8 @@ class Admin(db.Model):
     email = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, username,name,last_name,email):
+    def __init__(self, username, name, last_name, email):
         self.username = username
         self.name = name
         self.last_name = last_name
         self.email = email
-    
-    
-        
-       
-    
-    
-
-    
-     
