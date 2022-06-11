@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos a exportar</title>
+    <link rel="shortcut icon" href="/Imagenes/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/CSS/Amin.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/listas.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">
+</head>
+<body>
+    <nav class="navbar" id="nav_bar_admin">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <img src="/Imagenes/logo.png" style="width: 85px; height: 60px;">
+            <div class="navbar-end">
+                <a class="navbar-item is-active" href="/HTML/base.html" style="color: white;">
+                    Inicio
+                </a>
+                <a class="navbar-item" href="/HTML/empleadoadmin.html" style="color: white;">
+                    Empleado
+                </a>
+                <a class="navbar-item" href="/HTML/Clienteadmin.html" style="color: white;">
+                    Cliente
+                </a>
+                <a class="navbar-item" href="/HTML/libroadmin.html" style="color: white;">
+                    Libro
+                </a>
+                <a class="navbar-item" href="/HTML/peliculadmin.html" style="color: white;">
+                    Pelicula
+                </a>
+                <a class="navbar-item" style="color: white;" href="/HTML/datos.html">
+                    Datos
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<br>
+<label>Reporte de NÓMINA</label>
+<select class="select">
+    <option>Cantidad y lista de empleados de la empresa</option>
+    <option>Cantidad y lista de empleados por dependencia de la empresa</option>
+    <option>Cantidad y lista de empleados por dependencia de la empresa</option>
+    <option>Cantidad y lista de empleados por cargo por dependencia</option>
+    <option>Gráfico de torta representando la cantidad de empleados por dependencia</option>
+    <option>Gráfico de barras comparativas (frecuencia) de cantidad de empleados por dependencia por cargo</option>   
+</select>
+<br><br>
+<label>Reporte de INFORMACIÓN PERSONAL</label>
+<select class="select" >
+    <option>Nombre completo + Código Personal</option>
+    <option>Dependencia</option>
+    <option>Cargo</option>
+    <option>Fecha de ingreso (DD/MM/AAA)</option>
+    <option>EPS</option>
+    <option>Aporte Pensión</option>   
+    <option>Salario</option>
+    <option>Discriminación de Novedades</option>
+</select>
+<br><br>
+<label>Reporte SALUD y PENSIÓN</label>
+<select class="select">
+    <option> Gráfico de frecuencia por EPS para toda la empresa</option>
+    <option>Gráfico de frecuencia por PENSIÓN para toda la empresa</option>
+    <option>Gráfico de barras comparativas (frecuencias) por EPS por dependencia</option>
+    <option>Fecha de ingreso (DD/MM/AAA)</option>
+    <option>Gráfico de barras comparativas (frecuencias) por PENSIÓN por dependencia</option>
+    <option>Cantidad y Lista de empleados por cargo y por EPS</option>   
+    <option>Cantidad y Lista de empleados por cargo y por pensión</option>
+</select class="select">
+<br><br>
+<label>Reporte de NOVEDADES</label>
+<select class="select">
+    <option>Lista de empleados que tuvieron novedades en un rango de fecha F1 versus F2, en donde la fecha es: MM/AAA</option>
+    <option>Cantidad de empleados que tuvieron novedades en un rango de fecha F1 versus F2, en donde la fecha es:  MM/AAA por dependencia y por cargo</option>
+</select>
+<br><br>
+<label>Reporte de BASE-ENTRETENIMIENTO</label>
+<select class="select">
+    <option>Listado de películas por género entre una fecha F1 y F2</option>
+    <option>Listado del Top N libros con mejor rating. El usuario indica el valor de N para su consulta</option>
+    <option>Listado del Top 5 de libros con mejor rating por año, y Top 5 de libros con peor rating por año</option>
+    <option>Listado y cantidad de películas, con sus géneros, con N géneros. El usuario El usuario indica el valor de N para 
+        su consulta</option>
+    <option>Gráfico de frecuencia de películas por género</option>
+    <option>Gráfico de frecuencia de libros por año de publicación entre un rango de fechas F1 y F2</option> 
+</select>
+
+<table id="tabla" class="table table-border table-hover">
+
+</table>
+<button
+ id="btnCrearPdf">Exportar a PDF</button>
+    <!-- libreria de PDFS -->
+<script src="/JS/funciones.js"></script>
+<script src="html2pdf.bundle.min.js"></script>
+</body>
+</html>

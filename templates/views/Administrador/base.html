@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador</title>
+    <link rel="shortcut icon" href="/Imagenes/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/CSS/Amin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">
+</head>
+<body>
+<nav class="navbar" id="nav_bar_admin">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <img src="/Imagenes/logo.png" style="width: 85px; height: 60px;">
+            <div class="navbar-end">
+                <a class="navbar-item is-active" href="/HTML/base.html" style="color: white;">
+                    Inicio
+                </a>
+                <a class="navbar-item" href="/HTML/empleadoadmin.html" style="color: white;">
+                    Empleado
+                </a>
+                <a class="navbar-item" href="/HTML/Clienteadmin.html" style="color: white;">
+                    Cliente
+                </a>
+                <a class="navbar-item" href="/HTML/libroadmin.html" style="color: white;">
+                    Libro
+                </a>
+                <a class="navbar-item" href="/HTML/peliculadmin.html" style="color: white;">
+                    Pelicula
+                </a>
+                <a class="navbar-item" style="color: white;" href="/HTML/datos.html">
+                    Datos
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<br>
+<!--Termina el navbar-->
+<div class="container">
+    <div class="columns">
+        <div class="column is-9">
+            <section class="hero is-info welcome is-small">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            {{ admin.name }}
+                        </h1>
+                        <h2 class="subtitle">
+                            Bienvenido administrador
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section class="info-tiles">
+                <div class="tile is-ancestor has-text-centered">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">{{ cont_empleado }}</p>
+                            <p class="subtitle">Empleados</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">{{ cont_cliente }}</p>
+                            <p class="subtitle">Clientes</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">{{ cont_libro }}</p>
+                            <p class="subtitle">Libros</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">{{ cont_peliculas }}</p>
+                            <p class="subtitle">Peliculas</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="column">
+                    <div class="card">
+                        <section>
+                            <div class="container is-fullhd">
+                                <article class="tile is-child notification is-info">
+                                    <p class="title">presiona alguna opcion arriba en el menu</p>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<script async type="text/javascript" src="../js/bulma.js"></script>
+</body>
+
+</html>
