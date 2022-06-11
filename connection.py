@@ -1,5 +1,5 @@
 def connections():
-    return 'mysql://root:Dura2558//@localhost/cine'
+    return 'mysql://juanfrg2001:Felipe1972.@localhost/pr_final_bd'
 
 
 

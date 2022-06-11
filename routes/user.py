@@ -5,9 +5,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, make_r
 from pip._vendor import requests
 
 
-from models.model import Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
-from routes.movie import cont_movies
-from routes.book import cont_libro
+from models.model import Empleado, Cliente
 from utils.db import db
 
 

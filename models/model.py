@@ -140,24 +140,6 @@ class Cliente(db.Model):
         self.user_id = user_id
         self.id = id
 
-
-class Author(db.Model):
-    __tablaname__ = 'autor'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200))
-    last_name = db.Column(db.String(200))
-    libro = db.relationship('Libro')
-
-
-class Publicador(db.Model):
-    __tablaname__ = 'publicadores'
-
-    id = db.Column(db.Integer, primary_key=True)
-    publisher = db.Column(db.String(200))
-    libro = db.relationship('Libro')
-
-
 class Atiende(db.Model):
     __tablename__ = 'atiende'
 
@@ -171,11 +153,49 @@ class Atiende(db.Model):
         self.id_cliente = id_cliente
         self.id_empleado = id_empleado
         self.fecha_atencion = fecha_atencion
+        
+class Genre(db.Model):
+    __tablename__ = 'genres'
 
+    id = db.Column(db.Integer, primary_key=True)
+    genre_name = db.Column(db.String(250))
+    pelicula = db.relationship("Pelicula")
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+     
+class Pelicula(db.Model):
+    __tablename__ = 'peliculas'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    year = db.Column(db.Integer)
+    genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    
+class Autor(db.Model): 
+    __tablename__ = 'autores'
+    
+    id = db.Column(db.Integer, primary_key=True)  
+    name = db.Column(db.String(200))
+    last_name = db.Column(db.String(200))
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    pelicula = db.relationship("Libro")
+    
+    
+    
 
+class Publicador(db.Model):  
+    __tablename__ = 'publicadores' 
+    
+    id = db.Column(db.Integer, primary_key=True)  
+    name = db.Column(db.String(200))
+    created_date = db.Column(db.DateTime, default=datetime.datetime.now())   
+    pelicula = db.relationship("Libro")
+    
 class Libro(db.Model):
-    __tablename__ = 'libros'
-
+    __tablename__ = 'libros' 
+    
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     avrege_raiting = db.Column(db.String(100))
@@ -189,51 +209,9 @@ class Libro(db.Model):
     publication_date = db.Column(db.DateTime, default=datetime.datetime.now())
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     publisher_id = db.Column(db.Integer, db.ForeignKey('publicadores.id'))
-    author_id = db.Column(db.Integer, db.ForeignKey('autor.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('autores.id'))
     venta = db.relationship('Venta')
-
-    def __init__(self, title, author, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count,
-                 text_reviews, text_reviews_count, publication_date, publisher):
-        self.title = title
-        self.author_id = author
-        self.avrege_raiting = avrege_raiting
-        self.isbn = isbn
-        self.isbn13 = isbn13
-        self.language_code = language_code
-        self.num_pages = num_pages
-        self.raiting_count = raiting_count
-        self.text_reviews = text_reviews
-        self.text_reviews_count = text_reviews_count
-        self.publication_date = publication_date
-        self.publisher_id = publisher
-
-
-class Genre(db.Model):
-    __tablename__ = 'genres'
-
-    id = db.Column(db.Integer, primary_key=True)
-    genre = db.Column(db.String(100))
-    atiende = db.relationship('Pelicula')
-
-    def __init__(self, genre, atiende):
-        self.genre = genre
-        self.atiende = atiende
-
-
-class Pelicula(db.Model):
-    __tablename__ = 'peliculas'
-
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    year = db.Column(db.Integer)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
-    renta = db.relationship('Renta')
-
-    def __init__(self, title, year, genre_id):
-        self.title = title
-        self.year = year
-        self.genre_id = genre_id
-
+    
 class Venta(db.Model):
     __tablename__ = 'ventas'
 
@@ -255,8 +233,18 @@ class Admin(db.Model):
     __tablename__ = 'admins'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    name = db.Column(db.String(200))
+    last_name = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
     def __init__(self, user_id):
         self.user_id = user_id
+    
+    
+        
+       
+    
+    
+
+    
+     
