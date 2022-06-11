@@ -16,14 +16,14 @@
                         <img src="/static/Images/logo.png" width="135" alt="">
                     </div>
                     <!--Login-->
-                    <form action="#">
+                    <form action="/login" method="POST">
                         <div class="mb-4">
                             <label class="form-label">Nombre de usuario</label>
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <div>
                             <label class="form-label">Categoria</label>
-                            <select class="select">
+                            <select class="select" name="categoria">
                                 <option>Cliente</option>
                                 <option>Empleado</option>
                                 <option>Administrador</option>

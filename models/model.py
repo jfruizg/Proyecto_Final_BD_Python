@@ -144,13 +144,17 @@ class Cliente(db.Model):
     correo = db.Column(db.String(256))
     direccion = db.Column(db.String(256))
     username = db.Column(db.String(200), unique=true)
-    telefono = db.Column(db.Integer)
+    telefono = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     atiende = db.relationship('Atiende')
 
-    def __init__(self, user_id, id):
-        self.user_id = user_id
-        self.id = id
+    def __init__(self, name, last_name,correo,direccion,username,telefono):
+        self.name = name
+        self.last_name = last_name
+        self.correo = correo
+        self.direccion = direccion
+        self.username = username
+        self.telefono = telefono
 
 class Atiende(db.Model):
     __tablename__ = 'atiende'
@@ -183,14 +187,18 @@ class Pelicula(db.Model):
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     
+    
 class Autor(db.Model): 
     __tablename__ = 'autores'
     
     id = db.Column(db.Integer, primary_key=True)  
-    name = db.Column(db.String(200))
-    last_name = db.Column(db.String(200))
+    author_complete_name = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     pelicula = db.relationship("Libro")
+    
+    def __init__(self, author_complete_name):
+        self.author_complete_name = author_complete_name
+        
     
     
     
@@ -203,6 +211,10 @@ class Publicador(db.Model):
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())   
     pelicula = db.relationship("Libro")
     
+    def __init__(self, name):
+        self.name = name
+   
+    
 class Libro(db.Model):
     __tablename__ = 'libros' 
     
@@ -212,15 +224,33 @@ class Libro(db.Model):
     isbn = db.Column(db.String(100), unique=True)
     isbn13 = db.Column(db.String(100), unique=True)
     language_code = db.Column(db.String(100))
-    num_pages = db.Column(db.Integer)
-    raiting_count = db.Column(db.Integer)
+    num_pages = db.Column(db.String(100))
+    raiting_count = db.Column(db.String(100))
     text_reviews = db.Column(db.String(100))
-    text_reviews_count = db.Column(db.Integer)
+    text_reviews_count = db.Column(db.String(100))
     publication_date = db.Column(db.DateTime, default=datetime.datetime.now())
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     publisher_id = db.Column(db.Integer, db.ForeignKey('publicadores.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('autores.id'))
     venta = db.relationship('Venta')
+    
+    def __init__(self, title,avrege_raiting,isbn,isbn13,language_code,num_pages,raiting_count,text_reviews,text_reviews_count,publisher_id,author_id):
+        self.title = title
+        self.avrege_raiting = avrege_raiting
+        self.isbn = isbn
+        self.isbn13 = isbn13
+        self.language_code = language_code
+        self.num_pages = num_pages
+        self.raiting_count = raiting_count
+        self.text_reviews = text_reviews
+        self.text_reviews_count = text_reviews_count
+        self.publisher_id = publisher_id
+        self.author_id = author_id
+    
+    
+  
+    
+    
     
 class Venta(db.Model):
     __tablename__ = 'ventas'

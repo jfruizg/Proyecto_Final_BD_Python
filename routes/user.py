@@ -1,3 +1,4 @@
+
 import imp
 import json
 
@@ -39,11 +40,11 @@ def home():
         print(username)
         success_message = 'Bienvenido {}'.format(username)
         flash(success_message)
-        return render_template('./views/User/login.html', sitekey=sitekey)
+        return render_template('./views/Cliente/cliente.html')
     elif 'client' in session:
         client = session['client']
         print(client)
-        return render_template('./views/User/login.html')
+        return render_template('./views/Cliente/cliente.html')
     elif 'admin' in session:
         username_admin = session['admin']
         admin_insession = Admin.query.filter_by(username = username_admin)
@@ -76,20 +77,38 @@ def logout():
 
     return redirect(url_for('python_user_routes.home'))
 
-@user.route('/login', methods=['POST'])
+@user.route('/login', methods=['POST', 'GET'])
 def login():
     username = request.form['username']
-    password = request.form['password']
-
-    if user is not None and user.verify_password(password):
-        session['username'] = username
-        return redirect(url_for('python_contact_routes.home'))
+    user_tipe = request.form['categoria']
+    print(user_tipe)
+    if(user_tipe == "Administrador"):
+        user = Admin.query.filter_by(username = username)
+        if user is not None:
+            session['admin'] = username
+            return redirect(url_for('python_user_routes.home'))
+        else:
+            return redirect(url_for('python_user_routes.home'))
+    elif(user_tipe == "Cliente"):     
+        user = Cliente.query.filter_by(username = username)
+        if user is not None:
+            print("cliente")
+            session['client'] = username
+            return redirect(url_for('python_user_routes.home'))
+        else:
+            print("cliente")
+            return redirect(url_for('python_user_routes.home'))
     else:
-        return redirect(url_for('python_contact_routes.home'))
+        print("por aca estoy")
+        return redirect(url_for('python_user_routes.home'))
+    
+    
 
 @user.route('/register', methods=['POST','GET'])
 def register():
     username_admin = request.form['username_admin']
+    username_cliente = request.form['username_cliente']
+    username_empleado = request.form['username_empleado']
     captcha_response = request.form['g-recaptcha-response']
     if(username_admin != ""):
         if is_human(captcha_response):
@@ -108,6 +127,45 @@ def register():
         else:
             print("aca estoy")
             return render_template('./views/User/Login.html', sitekey=sitekey)
+        
+    elif(username_cliente != ""):
+        
+        if is_human(captcha_response):
+            name = request.form['nombre_cliente']
+            last_name = request.form['apellido_cliente']
+            correo  = request.form['correo_cliente']
+            direccion  = request.form['direccion_cliente']
+            telefono  = request.form['telefono_cliente']
+        
+            session['client'] = username_cliente
+             
+            cliente = Cliente(name,last_name,correo,direccion,username_cliente,telefono)
+            
+            db.session.add(cliente)
+            db.session.commit()
+            return redirect(url_for('python_user_routes.home'))
+        else:
+            print("aca estoy")
+            return render_template('./views/User/Login.html', sitekey=sitekey)  
+    elif(username_empleado != ""):
+        if is_human(captcha_response):
+            name = request.form['nombe_empleado']
+            last_name = request.form['apellido_empleado']
+            correo  = request.form['correo_empleado']
+            
+            session['admin'] = username_admin
+             
+            admin = Admin(username_admin,name,last_name,correo)
+            
+            db.session.add(admin)
+            db.session.commit()
+        
+            return redirect(url_for('python_user_routes.home'))
+        else:
+            print("aca estoy")
+            return render_template('./views/User/Login.html', sitekey=sitekey)    
+        
+            
     else:
         print("aca perdido estoy")
         return render_template('./views/User/Login.html', sitekey=sitekey)
