@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Poppins&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat Alternates', sans-serif;
+  }
+
+  body{
+		background: url(https://img.freepik.com/vector-gratis/fondo-negro-foco-luz_1017-27230.jpg?t=st=1654748394~exp=1654748994~hmac=a76a9d3d1887eef62d1323f0f6c8fe79dfe3786412454a8d93bad6fe7ebb8f96&w=826);
+		background-size: 100vw 100vh;
+		background-repeat: no-repeat;
+	}
+	.capa{
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0,0,0,0.6);
+		z-index: -1;
+		top: 0;left: 0;
+	}
+	/*Estilos para el encabezado*/
+	.header{
+		width: 100%;
+		height: 100px;
+		position: fixed;
+		top: 0;left: 0;
+	}
+
+	.container{
+		width: 90%;
+		max-width: 1200px;
+		margin: auto;
+	}
+	.container .btn-menu, .logo{
+		float: left;
+		line-height:100px;
+	}
+	.container .btn-menu label{
+		color: #fff;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.logo h1{
+		color: #fff;
+		font-weight: 400;
+		font-size: 22px;
+		margin-left: 10px;
+	}
+	.container .menu{
+		float: right;
+		line-height: 100px;
+	}
+	.container .menu a{
+		display: inline-block;
+		padding: 15px;
+		line-height: normal;
+		text-decoration: none;
+		color: #fff;
+		transition: all 0.3s ease;
+		border-bottom: 2px solid transparent;
+		font-size: 15px;
+		margin-right: 5px;
+	}
+	.container .menu a:hover{
+		border-bottom: 2px solid #c7c7c7;
+		padding-bottom: 5px;
+	}
+
+  .etiquetaSelect h1{
+    position: relative;
+    color: #fff;
+    top:115px;
+    left:370px;
+		font-weight: 400;
+		font-size: 25px;
+		margin-left: 10px;
+  }
+
+  .etiquetaAdquirir h1{
+    position: relative;
+    color: #fff;
+    top:200px;
+    left:390px;
+		font-weight: 400;
+		font-size: 15px;
+		margin-left: 10px;
+  }
+
+  /*ComboBox categoria*/
+  .select{
+    position: relative;
+    display: flex;
+    top:210px;
+    left:390px;
+    width: 15em;
+    height: 3em;
+    line-height: 3;
+    background: rgb(63, 63, 63);
+    overflow: hidden;
+    border-radius: .25em;
+  }
+
+  select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border:0 !important;
+  background: gray;
+  background-image: none;
+  flex: 0;
+  padding: 0 5em;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
+  .select::after{
+    content: '\258C';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #000;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+  }
+  .select:hover::after{
+    color: #ff0000;
+  }
+
+  /*ComboBox peliculas/libros*/
+
+  .select2{
+    position: relative;
+    display: flex;
+    top:270px;
+    left:390px;
+    width: 25em;
+    height: 3em;
+    line-height: 3;
+    background: rgb(63, 63, 63);
+    overflow: hidden;
+    border-radius: .25em;
+  }
+
+  select2{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border:0 !important;
+  background: gray;
+  background-image: none;
+  flex: 0;
+  padding: 0 5em;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  }
+
+  .select2::-ms-expand {
+    display: none;
+  }
+
+  .select2::after{
+    content: '\258C';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #000;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+  }
+  .select2:hover::after{
+    color: #ff0000;
+  }
+	/*Fin de Estilos para el encabezado*/
+
+	/*Menù lateral*/
+	#btn-menu{
+		display: none;
+	}
+	.container-menu{
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		width: 100%;
+		height: 100vh;
+		top: 0;left: 0;
+		transition: all 500ms ease;
+		opacity: 0;
+		visibility: hidden;
+	}
+	#btn-menu:checked ~ .container-menu{
+		opacity: 1;
+		visibility: visible;
+	}
+	.cont-menu{
+		width: 100%;
+		max-width: 250px;
+		background: #1c1c1c;
+		height: 100vh;
+		position: relative;
+		transition: all 500ms ease;
+		transform: translateX(-100%);
+	}
+	#btn-menu:checked ~ .container-menu .cont-menu{
+		transform: translateX(0%);
+	}
+	.cont-menu nav{
+		transform: translateY(15%);
+	}
+	.cont-menu nav a{
+		display: block;
+		text-decoration: none;
+		padding: 20px;
+		color: #c7c7c7;
+		border-left: 5px solid transparent;
+		transition: all 400ms ease;
+	}
+	.cont-menu nav a:hover{
+		border-left: 5px solid #c7c7c7;
+		background: #1f1f1f;
+	}
+	.cont-menu label{
+		position: absolute;
+		right: 5px;
+		top: 10px;
+		color: #fff;
+		cursor: pointer;
+		font-size: 18px;
+	}  
