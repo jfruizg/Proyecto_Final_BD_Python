@@ -166,18 +166,28 @@
             <section id="agregar">
                 <div class="column">
                     <div class="card">
-                        <form action="" method="POST">
-                            <input type="text" name="username" placeholder="username">
-                            <input type="text" name="email" placeholder="email">
-                            <input type="password" name="password" placeholder="password">
-                            <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
-                            <br/>
-
-                            <button>
-                                save
-                            </button>
-                        </form>
-
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Arl</h1>
+                                    <p class="description">Registra una Arl</p>
+                                    <form action="/register_arl" method="POST">
+                                        <input class="input is-medium" type="text" name="arl_name" placeholder="Registra una ARL">
+                                        <br/>
+            
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
                     </div>
                 </div>
             </section>
