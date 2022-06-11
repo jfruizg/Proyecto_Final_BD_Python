@@ -1,37 +1,17 @@
-/*redireccion de registro a principal HTML*/
-function volver(){
-    location.href = "Ventana_Principal.html";
+function RegistroAdmin() {
+    document.getElementById('registro_admin').style.display = 'block';
+    document.getElementById('registro_cliente').style.display = 'none';
+    document.getElementById('registro_empleado').style.display = 'none';
 }
 
-/*redireccion de Cerrar Sesion a principal HTML*/
-function cerrarsesion(){
-    location.href = "Ventana_Principal.html";
+function RegsitroEmpleado() {
+    document.getElementById('registro_admin').style.display = 'none';
+    document.getElementById('registro_cliente').style.display = 'none';
+    document.getElementById('registro_empleado').style.display = 'block';
 }
 
-/*Mostrar formulario Empleado*/
-function cliente() {
-    var x = document.getElementById("tabla_cliente");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-/*Mostrar Formulario Administrador*/
-function empleado() {
-    var x = document.getElementById("tabla_Empleado");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-/*Mostrar formulario Empleado*/
-function administrador() {
-    var x = document.getElementById("tabla_admin");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+function RegistroCliente() {
+    document.getElementById('registro_admin').style.display = 'none';
+    document.getElementById('registro_cliente').style.display = 'block';
+    document.getElementById('registro_empleado').style.display = 'none';
 }

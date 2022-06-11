@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Free Bulma template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/15181efa86.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/register.css">
+  </head>
+
+  <body>
+    <nav class="navbar" id="nav_bar_admin">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+    
+                </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item is-active" href="{{ url_for('python_user_routes.home') }}">
+                        Inicio
+                    </a>
+                    <a class="navbar-item" href="{{ url_for('python_admin_routes.info_empleado') }}">
+                        Empleado
+                    </a>
+                    <a class="navbar-item">
+                        Cliente
+                    </a>
+                    <a class="navbar-item">
+                        Libro
+                    </a>
+                    <a class="navbar-item">
+                        Pelicula
+                    </a>
+                    <a class="navbar-item">
+                        Datos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </br>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-1 ">
+    
+            </div>
+            <div class="column is-9">
+                <nav class="breadcrumb nav-center" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a onclick="inicio();">Inicio</a></li>
+                        <li><a onclick="agregar();">Agregar</a></li>
+                        <li><a onclick="datos();">Estadisticas</a></li>
+                        <li><a onclick="salud_pension();">Salud y pension</a></li>
+                    </ul>
+                </nav>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+    <script type="text/javascript">
+        function inicio() {
+            document.getElementById('inicio').style.display = 'block';
+            document.getElementById('agregar').style.display = 'none';
+            document.getElementById('datos').style.display = 'none';
+            document.getElementById('salud_pension').style.display = 'none';
+        }
+    
+        function agregar() {
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('agregar').style.display = 'block';
+            document.getElementById('datos').style.display = 'none';
+            document.getElementById('salud_pension').style.display = 'none';
+        }
+    
+        function datos() {
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('agregar').style.display = 'none';
+            document.getElementById('salud_pension').style.display = 'none';
+            document.getElementById('datos').style.display = 'block';
+        }
+        function salud_pension() {
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('agregar').style.display = 'none';
+            document.getElementById('datos').style.display = 'none';
+            document.getElementById('salud_pension').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

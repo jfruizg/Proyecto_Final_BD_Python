@@ -1,3 +1,6 @@
+from enum import unique
+
+from sqlalchemy import true
 from utils.db import db
 import datetime
 class Empleado(db.Model):
@@ -7,15 +10,19 @@ class Empleado(db.Model):
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     name = db.Column(db.String(200))
     last_name = db.Column(db.String(200))
+    email = db.Column(db.String(200))
+    username = db.Column(db.String(200), unique=true)
     sueldo = db.Column(db.Integer)
     atiende = db.relationship('Atiende')
     empleado_nomina = db.relationship('EmpleadoNomina')
     vacaciones = db.relationship('Vacacion')
     incapacidad = db.relationship('Incapcidad')
 
-    def __init__(self, user_id, id):
-        self.user_id = user_id
-        self.id = id
+    def __init__(self, name, last_name,username, email):
+        self.name = name
+        self.last_name = last_name
+        self.username = username
+        self.email = email
 
 
 class EmpleadoNomina(db.Model):
@@ -36,7 +43,7 @@ class Dependencia(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     dependencia = db.Column(db.String(256), unique=True)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    empleados = db.relationship('Empleado')
+    empleados = db.relationship('EmpleadoNomina')
 
     def __init__(self, dependencia):
         self.dependencia = dependencia
@@ -48,7 +55,7 @@ class Cargo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cargo = db.Column(db.String(256), unique=True)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    empleados = db.relationship('Empleado')
+    empleados = db.relationship('EmpleadoNomina')
 
     def __init__(self, cargo):
         self.cargo = cargo
@@ -60,7 +67,7 @@ class Eps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     eps = db.Column(db.String(256), unique=True)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    empleados = db.relationship('Empleado')
+    empleados = db.relationship('EmpleadoNomina')
 
     def __init__(self, eps):
         self.eps = eps
@@ -72,7 +79,7 @@ class Arl(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     arl = db.Column(db.String(256), unique=True)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    empleados = db.relationship('Empleado')
+    empleados = db.relationship('EmpleadoNomina')
 
     def __init__(self, arl):
         self.arl = arl
@@ -84,13 +91,13 @@ class Pension(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     pension = db.Column(db.String(256), unique=True)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    empleados = db.relationship('Empleado')
+    empleados = db.relationship('EmpleadoNomina')
 
     def __init__(self, pension):
         self.pension = pension
 
 
-class Incapacidad(db.Model):
+class Incapcidad(db.Model):
     __tablename__ = 'incapacidad'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -100,6 +107,10 @@ class Incapacidad(db.Model):
     fecha_inicio = db.Column(db.DateTime, default=datetime.datetime.now())
     fecha_finalizacion = db.Column(db.DateTime)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    
+    def __init__(self, cod_empleado):
+        self.cod_empleado = cod_empleado
+
 
 class Vacacion(db.Model):
     __tablename__ = 'vacaciones'
@@ -132,6 +143,7 @@ class Cliente(db.Model):
     last_name = db.Column(db.String(200))
     correo = db.Column(db.String(256))
     direccion = db.Column(db.String(256))
+    username = db.Column(db.String(200), unique=true)
     telefono = db.Column(db.Integer)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     atiende = db.relationship('Atiende')
@@ -164,9 +176,7 @@ class Genre(db.Model):
      
 class Pelicula(db.Model):
     __tablename__ = 'peliculas'
-    
-    id = db.Column(db.Integer, primary_key=True)
-    
+     
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     year = db.Column(db.Integer)
@@ -233,12 +243,17 @@ class Admin(db.Model):
     __tablename__ = 'admins'
 
     id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200), unique=true)
     name = db.Column(db.String(200))
     last_name = db.Column(db.String(200))
+    email = db.Column(db.String(200))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    def __init__(self, user_id):
-        self.user_id = user_id
+    def __init__(self, username,name,last_name,email):
+        self.username = username
+        self.name = name
+        self.last_name = last_name
+        self.email = email
     
     
         

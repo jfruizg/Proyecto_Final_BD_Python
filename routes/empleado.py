@@ -43,3 +43,7 @@ def actualizar_empleado(id):
 
         return render_template('index.html', empleado=empleado)
 
+
+
+def cont_empleados():
+    return Empleado.query.count()

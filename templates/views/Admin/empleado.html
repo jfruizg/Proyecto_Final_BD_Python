@@ -28,7 +28,7 @@
     </style>
     <style type="text/css">
         #agregar,#salud_pension,
-        #datos {
+        #datos,#arl,#eps,#dependencia,#cargo,#pension {
             display: none;
         }
     </style>
@@ -84,28 +84,32 @@
             <nav class="breadcrumb nav-center" aria-label="breadcrumbs">
                 <ul>
                     <li><a onclick="inicio();">Inicio</a></li>
-                    <li><a onclick="agregar();">Agregar</a></li>
+                    <li><a onclick="agregar();">FinalizarProceso</a></li>
                     <li><a onclick="datos();">Estadisticas</a></li>
-                    <li><a onclick="salud_pension();">Salud y pension</a></li>
+                    <li><a onclick="arl();">Arl</a></li>
+                    <li><a onclick="dependencia();">Dependencia</a></li>
+                    <li><a onclick="cargo();">Cargo</a></li>
+                    <li><a onclick="eps();">Eps</a></li>
+                    <li><a onclick="pension();">Pension</a></li>
                 </ul>
             </nav>
             <section class="info-tiles">
                 <div class="tile is-ancestor has-text-centered">
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ empleado }}</p>
+                            <p class="title"></p>
                             <p class="subtitle">Empleados</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ cont_movie }}</p>
+                            <p class="title"></p>
                             <p class="subtitle">Clientes</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ cont_libro }}</p>
+                            <p class="title"></p>
                             <p class="subtitle">Libros</p>
                         </article>
                     </div>
@@ -142,21 +146,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for admin in admins %}
-                                    <tr>
-                                        <td>{{admin.id}}</td>
-                                        <td>{{admin.name}}</td>
-                                        <td>{{admin.last_name}}</td>
-                                        <td>{{admin.username}}</td>
-                                        {% if admin.user_tipe == 1 %}
-                                        <td>Admin</td>
-                                        {% elif admin.user_tipe == 2 %}
-                                        <td>Empleado</td>
-                                        {% elif admin.user_tipe == 3 %}
-                                        <td>Cliente</td>
-                                        {% endif %}
-                                    </tr>
-                                    {% endfor %}
+                                    
                                     </tbody>
                                     <tfoot>
                                     <tr>
@@ -198,21 +188,139 @@
                     </div>
                 </div>
             </section>
-            <section id="salud_pension">
+            <section id="arl">
                 <div class="column">
                     <div class="card">
-                        <form action="" method="POST">
-                            <input type="text" name="username" placeholder="username">
-                            <input type="text" name="email" placeholder="email">
-                            <input type="password" name="password" placeholder="password">
-                            <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
-                            <br/>
-
-                            <button>
-                                save
-                            </button>
-                        </form>
-
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Arl</h1>
+                                    <p class="description">Registra una Arl</p>
+                                    <form action="/register_arl" method="POST">
+                                        <input class="input is-medium" type="text" name="arl_name" placeholder="Registra una ARL">
+                                        <br/>
+            
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+            <section id="eps">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">EPS</h1>
+                                    <p class="description">Registra una eps</p>
+                                    <form action="/register_eps" method="POST">
+                                        <input class="input is-medium" type="text" name="eps_name" placeholder="Registra una EPS">
+                                        <br/>
+            
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+            <section id="cargo">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Cargo</h1>
+                                    <p class="description">Registra una cargo</p>
+                                    <form action="/register_cargo" method="POST">
+                                        <input class="input is-medium" type="text" name="cargo_name" placeholder="Registra un cargo">
+                                        <br/>
+            
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+            <section id="dependencia">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Registra Dependencias</h1>
+                                    <p class="description">Por ejemplo Tecnologia</p>
+                                    <form action="/register_dependencia" method="POST">
+                                        <input class="input is-medium" type="text" name="dependencia_name" placeholder="dependencia">
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+            <section id="pension">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Registra Pension</h1>
+                                    <p class="description"></p>
+                                    <form action="/register_pension" method="POST">
+                                        <input class="input is-medium" type="text" name="pension_name" placeholder="dependencia">
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
                     </div>
                 </div>
             </section>
@@ -229,32 +337,56 @@
 </script>
 <script async type="text/javascript" src="../js/bulma.js"></script>
 <script type="text/javascript">
-    function inicio() {
-        document.getElementById('inicio').style.display = 'block';
+
+    function cerrar_pestanas(){
+        document.getElementById('inicio').style.display = 'none';
         document.getElementById('agregar').style.display = 'none';
         document.getElementById('datos').style.display = 'none';
-        document.getElementById('salud_pension').style.display = 'none';
+        document.getElementById('cargo').style.display = 'none';
+        document.getElementById('arl').style.display = 'none';
+        document.getElementById('pension').style.display = 'none';
+        document.getElementById('eps').style.display = 'none';
+        document.getElementById('dependencia').style.display = 'none';
+        document.getElementById('cargo').style.display = 'none';
+    }
+
+    function inicio() {
+        cerrar_pestanas()
+        document.getElementById('inicio').style.display = 'block';
     }
 
     function agregar() {
-        document.getElementById('inicio').style.display = 'none';
+        cerrar_pestanas()
         document.getElementById('agregar').style.display = 'block';
-        document.getElementById('datos').style.display = 'none';
-        document.getElementById('salud_pension').style.display = 'none';
     }
 
     function datos() {
-        document.getElementById('inicio').style.display = 'none';
-        document.getElementById('agregar').style.display = 'none';
-        document.getElementById('salud_pension').style.display = 'none';
+        cerrar_pestanas()
         document.getElementById('datos').style.display = 'block';
     }
-    function salud_pension() {
-        document.getElementById('inicio').style.display = 'none';
-        document.getElementById('agregar').style.display = 'none';
-        document.getElementById('datos').style.display = 'none';
-        document.getElementById('salud_pension').style.display = 'block';
+    function arl() {
+        cerrar_pestanas()
+        document.getElementById('arl').style.display = 'block';
     }
+    function pension() {
+        cerrar_pestanas()
+        document.getElementById('pension').style.display = 'block';
+    }
+    function eps() {
+        cerrar_pestanas()
+        document.getElementById('eps').style.display = 'block';
+    }
+    function dependencia() {
+        cerrar_pestanas()
+        document.getElementById('dependencia').style.display = 'block';
+    }
+    function cargo() {
+        cerrar_pestanas()
+        document.getElementById('cargo').style.display = 'block';
+    }
+
+
+
 </script>
 </body>
 </html>

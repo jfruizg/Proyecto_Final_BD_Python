@@ -1,11 +1,16 @@
+import imp
 import json
 
 
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
+from sqlalchemy import false, true
 
-
-from models.model import Empleado, Cliente
+from routes.empleado import guardar_empleado, cont_empleados
+from routes.admin import all_admin
+from routes.book import cont_books
+from routes.movie import cont_movies
+from models.model import Empleado, Cliente, Admin
 from utils.db import db
 
 
@@ -40,11 +45,12 @@ def home():
         print(client)
         return render_template('./views/User/login.html')
     elif 'admin' in session:
-        admin = session['admin']
-        cont_movie = cont_movies()
-        cont_libros = cont_libro()
-        all_admin = admins()
-        return render_template('./views/Admin/index.html', admin = admin, empleado = cont_empleados() , cont_movie = cont_movie, cont_libro = cont_libros , admins = all_admin)
+        username_admin = session['admin']
+        admin_insession = Admin.query.filter_by(username = username_admin)
+        admins = all_admin()
+        
+    
+        return render_template('./views/Admin/index.html', admin = admin_insession, empleados = cont_empleados(), clientes = cont_clientes(), libros = cont_books(), peliculas = cont_movies())
     else:
         delete_message = 'Hasta luego'
         flash(delete_message)
@@ -83,36 +89,28 @@ def login():
 
 @user.route('/register', methods=['POST','GET'])
 def register():
-
-
-    name = request.form['name']
-    last_name = request.form['last_name']
-    username = request.form['username']
-    password = request.form['password']
+    username_admin = request.form['username_admin']
     captcha_response = request.form['g-recaptcha-response']
-    user_tipe = request.form['user_tipe']
-
-    if is_human(captcha_response):
-
-        if(user_tipe == "Administrador"):
-
-            user_id = get_user_id(username)
-            add_empleado(user_tipe,user_id)
-            session['admin'] = username
-        elif(user_tipe == "Empleado"):
-
-            user_id = get_user_id(username)
-            add_empleado(user_tipe,user_id)
-            session['username'] = username
-        elif(user_tipe == "Cliente"):
-
-            user_id = get_user_id(username)
-            add_empleado(user_tipe,user_id)
-            session['client'] = username
-
-        return redirect(url_for('python_user_routes.home'))
+    if(username_admin != ""):
+        if is_human(captcha_response):
+            name = request.form['nombre_admin']
+            last_name = request.form['apellido_admin']
+            correo  = request.form['correo_admin']
+            
+            session['admin'] = username_admin
+             
+            admin = Admin(username_admin,name,last_name,correo)
+            
+            db.session.add(admin)
+            db.session.commit()
+        
+            return redirect(url_for('python_user_routes.home'))
+        else:
+            print("aca estoy")
+            return render_template('./views/User/Login.html', sitekey=sitekey)
     else:
-        return render_template('./views/User/Registro.html', sitekey=sitekey)
+        print("aca perdido estoy")
+        return render_template('./views/User/Login.html', sitekey=sitekey)
 
 @user.route('/cookie')
 def cookie():
@@ -120,35 +118,17 @@ def cookie():
     response.set_cookie('custome_cookie', 'Eduardo')
     return response
 
-
-
-def add_empleado(user_tipe,user_id):
-
-    if(user_tipe == 1):
-        new_empleado = Admin(user_id)
-        db.session.add(new_empleado)
-        db.session.commit()
-
-    elif(user_tipe == 2):
-        new_empleado = Empleado(user_id)
-        db.session.add(new_empleado)
-        db.session.commit()
-
-    elif(user_tipe == 3):
-        new_empleado = Cliente(user_id)
-        db.session.add(new_empleado)
-        db.session.commit()
+def cont_clientes():
+    return Cliente.query.count()
 
 def get_user_id(username):
     user_id = user.id
     return user_id
 
 
-def cont_empleados():
-    return Empleado.query.count()
 
-def admins():
-    return user
+     
+    
 
 
 

@@ -48,7 +48,7 @@
                 <a class="navbar-item is-active" href="{{ url_for('python_user_routes.home') }}">
                     Inicio
                 </a>
-                <a class="navbar-item" href="{{ url_for('python_user_routes.empleado') }}">
+                <a class="navbar-item" href="{{ url_for('python_admin_routes.info_empleado') }}">
                     Empleado
                 </a>
                 <a class="navbar-item">
@@ -80,9 +80,10 @@
                 <div class="hero-body">
                     <div class="container">
                         <h1 class="title">
-                            {{ admin.name }}
+                         
                         </h1>
                         <h2 class="subtitle">
+                            {{ admin.name }}
                             Bienvenido administrador
                         </h2>
                     </div>
@@ -92,86 +93,133 @@
                 <div class="tile is-ancestor has-text-centered">
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ empleado }}</p>
+                            <p class="title"> {{ empleados }}</p>
                             <p class="subtitle">Empleados</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ cont_movie }}</p>
+                            <p class="title">{{ clientes }}</p>
                             <p class="subtitle">Clientes</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">{{ cont_libro }}</p>
+                            <p class="title"> {{ libros }} </p>
                             <p class="subtitle">Libros</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
-                            <p class="title">19</p>
-                            <p class="subtitle">Clientes</p>
+                            <p class="title"> {{ peliculas }} </p>
+                            <p class="subtitle">Peliculas</p>
                         </article>
                     </div>
                 </div>
             </section>
-            <section>
-                <div class="column">
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">
-                                Filters
-                            </p>
-                        </header>
-                        <section>
-                            <div class="container is-fullhd">
-
-                                <article class="tile is-child notification is-info">
-                                    <p class="title">Datatables generales</p>
-                                </article>
-                                <table id="example" class="table is-striped is-hoverable" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for admin in admins %}
-                                    <tr>
-                                        <td>{{admin.id}}</td>
-                                        <td>{{admin.name}}</td>
-                                        <td>{{admin.last_name}}</td>
-                                        <td>{{admin.username}}</td>
-                                        {% if admin.user_tipe == 1 %}
-                                            <td>Admin</td>
-                                        {% elif admin.user_tipe == 2 %}
-                                            <td>Empleado</td>
-                                        {% elif admin.user_tipe == 3 %}
-                                            <td>Cliente</td>
-                                        {% endif %}
-                                    </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </section>
-                    </div>
+            <section class="hero is-info is-small">
+                <div class="hero-body">
+                  <div class="container has-text-centered">
+                    <p class="title">
+                      Todaas las funciones
+                    </p>
+                    <p class="subtitle">
+                      Aca se encuentran los difrentes apartados
+                    </p>
+                  </div>
                 </div>
-            </section>
+              </section>
+              <div class="box cta">
+                <p class="has-text-centered">
+                  <span class="tag is-primary">New</span> Elige alguno
+                </p>
+              </div>
+              <section class="container">
+                <div class="columns features">
+                  <div class="column is-4">
+                    <div class="card is-shady">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://www.educima.com/imagen-empleado-de-oficina-dl30427.jpg" alt="Placeholder image" class="modal-button" data-target="modal-image2">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content">
+                          <h4>Empleado</h4>
+                          <p>Seccion en la cual se va hacer la gestion del emplado y la nomina</p>
+                          <span class="button is-link modal-button" data-target="modal-image2">Image modal</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-4">
+                    <div class="card is-shady">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://smallbusinessify.com/wp-content/uploads/2018/12/Business-and-competition-1068x783.jpg" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content">
+                          <h4>Cliente</h4>
+                          <p>Seccion donde se puede realizar la gestion a un cliente</p>
+                          <span class="button is-link modal-button" data-target="modal-card">Modal Card</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-4 modal-button" data-target="modal-image">
+                    <div class="card is-shady">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://i.pinimg.com/originals/bd/7f/bf/bd7fbf91dce964512348db37fb472469.jpg" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content">
+                          <h4>Libros</h4>
+                          <p>Seccion dopnde se hace el registro de libros y su gestion</p>
+                          <span class="button is-link modal-button" data-target="modal-image">Image modal</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="columns features">
+                  <div class="column is-4 modal-button" data-target="modal-card">
+                    <div class="card is-shady">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://th.bing.com/th/id/R.74ef8956cc31d46a74ad6844fd1547c2?rik=GwSj5HcXoZOZyA&riu=http%3a%2f%2fwww.agropak.com.tr%2fimg%2ftanitimvideo.jpg&ehk=PHjwxdRo1WOeZXIbAcsSuc5c%2b9JeZcTVRcGMgKjlNQg%3d&risl=&pid=ImgRaw&r=0" alt="Placeholder image">
+                        </figure>
+                      </div>
+                      <div class="card-content">
+                        <div class="content">
+                          <h4>Pelicula</h4>
+                          <p>Seccion en donde se va a gestionar las peliculas</p>
+                          <span class="button is-link modal-button">Modal card</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-4">
+                    <div class="card is-shady">
+                      <div class="card-image">
+                        <figure class="image is-4by3">
+                          <img src="https://source.unsplash.com/hLyd1LukQ7E" alt="butterfly image" class="modal-button" data-target="modal-image4">
+                        </figure>
+                      </div>
+                      <div class="card-content  modal-button" data-target="modal-card2">
+                        <div class="content">
+                          <h4>Datos</h4>
+                          <p>Gestion adicional de otros elementos</p>
+                          <span class="button is-link modal-button">Modal card</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
         </div>
     </div>
 </div>
