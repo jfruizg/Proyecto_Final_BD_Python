@@ -8,6 +8,9 @@ from routes.cargo import cargo
 from routes.arl import arl
 from routes.pension import pension
 from routes.eps import eps
+from routes.author import author
+from routes.book import book
+from routes.publicadores import publicador
 from connection import connections
 
 
@@ -59,3 +62,6 @@ app.register_blueprint(arl)
 app.register_blueprint(dependencia)
 app.register_blueprint(pension)
 app.register_blueprint(eps)
+app.register_blueprint(author)
+app.register_blueprint(publicador)
+app.register_blueprint(book)
