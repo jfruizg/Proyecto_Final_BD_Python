@@ -11,4 +11,4 @@ python indedx.py - es el codigo que se usa para correr
 """
 
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run(port=3010,debug=True)

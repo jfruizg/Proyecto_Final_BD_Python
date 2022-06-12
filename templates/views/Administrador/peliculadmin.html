@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador-Pelicula</title>
+    <link rel="shortcut icon" href="/Imagenes/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/CSS/Amin.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">
+</head>
+<body>
+<nav class="navbar" id="nav_bar_admin">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <img src="/Imagenes/logo.png" style="width: 85px; height: 60px;">
+            <div class="navbar-end">
+                <a class="navbar-item is-active" href="/HTML/base.html" style="color: white;">
+                    Inicio
+                </a>
+                <a class="navbar-item" href="/HTML/empleadoadmin.html" style="color: white;">
+                    Empleado
+                </a>
+                <a class="navbar-item" href="/HTML/Clienteadmin.html" style="color: white;">
+                    Cliente
+                </a>
+                <a class="navbar-item" href="/HTML/libroadmin.html" style="color: white;">
+                    Libro
+                </a>
+                <a class="navbar-item" href="/HTML/peliculadmin.html" style="color: white;">
+                    Pelicula
+                </a>
+                <a class="navbar-item" style="color: white;" href="/HTML/datos.html">
+                    Datos
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- END NAV -->
+<!--comienzo de enlaces para registro y graficas-->
+<div class="menu_pequeño">
+    <nav>
+        <ul>
+            <li><a onclick="tabla()">Tabla</a></li>
+            <li><a onclick="formulario()">Registro</a></li>
+            <li><a onclick="graficas()">Estadisticas</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container">
+    <div class="columns">
+        <div class="column is-1 ">
+        </div>
+        <div class="column is-9">
+            <section class="hero is-info welcome is-small">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            
+                        </h1>
+                        <h2 class="subtitle">
+                            Bienvenido administrador
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <section class="info-tiles">
+                <div class="tile is-ancestor has-text-centered">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title"></p>
+                            <p class="subtitle">Peliculas</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="column">
+                    <div class="card">
+                        <section>
+                            <div class="container is-fullhd">
+                                <article class="tile is-child notification is-info">
+                                    <p class="title">Datatables Libros</p>
+                                </article>
+                                <table id="example" class="table is-striped is-hoverable" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>tittle</th>
+                                        <th>year</th>
+                                        <th>genere</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
+<script src="/JS/funciones.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<script async type="text/javascript" src="../js/bulma.js"></script>
+
+<div id="formulario" style="display: none;">
+    <form action="">
+    <h1 style="color: white;">Por favor registra al empleado</h1>
+    <BR>
+    <div class="mb-4">
+        <label style="color: white;">Nombre Completo</label>
+        <input type="Text" class="casilla">
+    </div>
+    <div class="mb-4">
+        <label style="color: white;">Apellido Completo</label>
+        <input type="Text" class="casilla">
+    </div>
+    <div class="mb-4">
+        <label style="color: white;">Correo Electronico</label>
+        <input type="Text" class="casilla">
+    </div>
+    <div class="mb-4">
+        <label style="color: white;">User Name</label>
+        <input type="text" class="casilla">
+    </div>
+    <div class="mb-4">
+        <button class="btn btn-green">Guardar</button>
+    </div>
+    </form>
+</div>
+</body>
+</html>

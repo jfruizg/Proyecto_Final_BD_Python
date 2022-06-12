@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Cliente.css">
+    <title>PaginaCliente</title>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="btn-menu">
+            <label for="btn-menu">☰</label>
+        </div>
+        <div class="logo">
+            <h1>PERFIL</h1>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li onclick="compra()"><a href="#">COMPRA</a></li>
+                <li onclick="renta()"><a href="#">RENTA</a></li>
+                <li onclick="mirar()"><a href="#">MIRAR</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="capa"></div>
+<!--	--------------->
+<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+    <div class="cont-menu">
+        <nav>
+            <ul>
+                <li onclick="editPerfil()"><a href="#">EDITAR PERFIL</a></li>
+                <li onclick="cerrarSe()"><a href="#">CERRAR SESIÓN</a></li>
+            </ul>
+        </nav>
+        <label for="btn-menu">✖️</label>
+    </div>
+</div>
+<div class="etiquetaSelect">
+    <h1>COMPRA Y RENTA DE PELICULAS Y LIBROS</h1>
+</div>
+<div class="etiquetaAdquirir">
+    <h1>ADQUIRIR</h1>
+</div>
+<div class="select">
+    <select>
+        <option>Película</option>
+        <option>Libro</option>
+    </select>
+</div>
+<div class="select2">
+    <select>
+        <option>Seleccione su película/libro</option>
+        <option>Seleccione su película/libro</option>
+        <option>Seleccione su película/libro</option>
+        <option>Seleccione su película/libro</option>
+    </select>
+</div>
+<script src="/JS/acciones_admin.JS" defer></script>
+<script src="/JS/redirecciones.js"></script>
+</body>
+</html>

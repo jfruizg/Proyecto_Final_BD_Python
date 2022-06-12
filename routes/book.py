@@ -2,49 +2,56 @@ import json
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 
-from models.model import Pelicula, Libro, Empleado, Cliente, Dependencia, Cargo, Eps,Arl, Pension
+from models.model import Libro, Pelicula, Libro
+from routes.author import get_author_id
+from routes.publicadores import get_publicadores_id
 from utils.db import db
-
 
 book = Blueprint('python_book_routes', __name__)
 
 
-@book.route('/create_book', methods=['POST','GET'])
+@book.route('/register_book', methods=['POST', 'GET'])
 def create():
     if 'admin' in session:
-        title = request.form["title"]
+        title = request.form["titulo"]
         avrege_raiting = request.form["avrege_raiting"]
-        author = request.form["author"]
         isbn = request.form["isbn"]
         isbn13 = request.form["isbn13"]
         language_code = request.form["language_code"]
-        num_pages= request.form["num_pages"]
         raiting_count = request.form["raiting_count"]
         text_reviews = request.form["text_reviews"]
+        num_pages = request.form["num_pages"]
         text_reviews_count = request.form["text_reviews_count"]
-        publication_date = request.form["text_reviews_count"]
-        publisher = request.form["publisher"]
+        autor = request.form["author_id"]
+        publicador = request.form["publicador_id"]
 
-        book = Libro(title, author,avrege_raiting, isbn, isbn13, language_code,num_pages,raiting_count, text_reviews,text_reviews_count, publication_date, publisher)
+        id_autor = get_author_id(autor)
+        id_publicador = get_publicadores_id(publicador)
+
+        book = Libro(title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
+                     text_reviews_count, id_publicador, id_autor)
 
         db.session.add(book)
         db.session.commit()
 
+        return redirect(url_for('python_admin_routes.info_libro'))
+
+
 @book.route('/show_book')
 def show():
     if 'admin' in session:
-        books = Libro.all()
-        return render_template('./comment/show.html', books=books)
-
+        movies = Pelicula.all()
+        return render_template('./comment/show.html', movies=movies)
 
 
 @book.route('/delete_book/<id>')
 def delete():
     if 'admin' in session:
-        comment = Libro.query.get(id)
+        comment = Pelicula.query.get(id)
 
         db.session.delete(comment)
         db.session.commit()
 
-def cont_libro():
+
+def cont_books():
     return Libro.query.count()

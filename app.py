@@ -1,10 +1,17 @@
-
 from flask import Flask
-from flask import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from routes.user import user
-from routes.book import book
-from routes.movie import movie
 from routes.empleado import empleado
+from routes.admin import admin
+from routes.dependencia import dependencia
+from routes.cargo import cargo
+from routes.arl import arl
+from routes.pension import pension
+from routes.eps import eps
+from routes.author import author
+from routes.book import book
+from routes.publicadores import publicador
+from routes.data import data
 from connection import connections
 
 
@@ -22,7 +29,7 @@ app.secret_key = 'my_secret_key'
 
 
 
-uri = 'mysql://root:estefa03@localhost/Proyecto_Final'
+uri = 'mysql://root:root@localhost/proyectobd'
 
 uri = 'mysql://root:Dura2558//@localhost/cine'
 
@@ -48,7 +55,15 @@ con el blue print traemos la informacion que se va hacer en la routes
 "example" - es el nombre que se dio en el ruteo 
 
 """
+
 app.register_blueprint(user)
-app.register_blueprint(movie)
-app.register_blueprint(book)
 app.register_blueprint(empleado)
+app.register_blueprint(cargo)
+app.register_blueprint(admin)
+app.register_blueprint(arl)
+app.register_blueprint(dependencia)
+app.register_blueprint(pension)
+app.register_blueprint(eps)
+app.register_blueprint(author)
+app.register_blueprint(publicador)
+app.register_blueprint(book)

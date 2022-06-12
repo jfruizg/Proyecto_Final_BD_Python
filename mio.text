@@ -1,0 +1,60 @@
+
+
+{% for admin in admins %}
+                                    <tr>
+                                        <td>{{admin.id}}</td>
+                                        <td>{{admin.name}}</td>
+                                        <td>{{admin.last_name}}</td>
+                                        <td>{{admin.username}}</td>
+                                        {% if admin.user_tipe == 1 %}
+                                        <td>Admin</td>
+                                        {% elif admin.user_tipe == 2 %}
+                                        <td>Empleado</td>
+                                        {% elif admin.user_tipe == 3 %}
+                                        <td>Cliente</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+
+                                       <section>
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                Filters
+                            </p>
+                        </header>
+                        <section>
+                            <div class="container is-fullhd">
+
+                                <article class="tile is-child notification is-info">
+                                    <p class="title">Datatables generales</p>
+                                </article>
+                                <table id="example" class="table is-striped is-hoverable" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>last_name</th>
+                                        <th>username</th>
+                                        <th>usertipe</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                   
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>last_name</th>
+                                        <th>username</th>
+                                        <th>usertipe</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>

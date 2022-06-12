@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>Programa de ColPlus-Solution</title>
-        <link rel="shortcut icon" href="/templates/Images/logo.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='Images/logo.ico' ) }}" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Login.css' ) }}">
     </head>
@@ -16,15 +16,20 @@
                         <img src="/static/Images/logo.png" width="135" alt="">
                     </div>
                     <!--Login-->
-                    <form action="#">
+                    <form action="/login" method="POST">
                         <div class="mb-4">
                             <label class="form-label">Nombre de usuario</label>
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="username">
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label">Password</label>
-                            <input type="Text" class="form-control" name="email">
+                        <div>
+                            <label class="form-label">Categoria</label>
+                            <select class="select" name="categoria">
+                                <option>Cliente</option>
+                                <option>Empleado</option>
+                                <option>Administrador</option>
+                            </select>
                         </div>
+                        <br><br>
                         <div class="mb-4">
                             <input type="checkbox" name="connected" class="form-check-input">
                             <label class="form-check-label">Mantener Conectado</label>

@@ -34,3 +34,6 @@ def delete():
 
         db.session.delete(comment)
         db.session.commit()
+
+
+

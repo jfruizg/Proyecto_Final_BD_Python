@@ -4,53 +4,116 @@
     <title>Registrarse</title>
     <link rel="shortcut icon"  src="https://images.vexels.com/media/users/3/172916/raw/a02f954806df988b2e44bbb41d233414-conjunto-de-elementos-de-trazo-de-cine.jpg" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='registro.css' ) }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='Images/logo.ico' ) }}" type="image/x-icon">
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <style type="text/css">
+        #registro_cliente, #registro_empleado,
+        #registro_admin {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container w-50 bg-primary mt-5 rounded shadow">
-        <div class="row align-items-md-stretch">
-            <div class="col bg-dark p-5 rounded-end">
-                <div class="text-end">
-                    <img src="/static/Images/logo.png" width="100" alt="">
-                </div>
-                <!--Register-->
-                <form action="/register" method="POST">
-                    <div class="d-grid">
-                        <h2 style="color: white; text-align: center;">Seleccione su cargo con el que desea registrarse</h2>
-                        <input type="text" class="form-control" name="name" placeholder="Nombre">
-                        <br>
-                        <input type="text" class="form-control" name="last_name" placeholder="Apellido">
-                        <br>
-                        <input type="text" class="form-control" name="username" placeholder="NombreUsuario">
-                        <br>
-                        <input type="password" class="form-control" name="password" placeholder="password">
-                        <br>
-                        <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div> <br/>
-
-                    </div>
-                    <label class="form-label">Categoria</label>
-                    <div class="select">
-                        <select name="user_tipe">
-                                <option>Cliente</option>
-                                <option>Empleado</option>
-                                <option>Administrador</option>
-                            </select>
-                    </div>
-                    <br><br>
-                    <div class="d-grid">
-                        <button class="btn btn-primary">Aceptar</button>
-                        <br>
-                        <div class="d-grid">
-                            <a class="btn btn-primary" href="{{ url_for('python_user_routes.log') }}">Login</a>
-                        </div>
-                    </div>
-                </form>
+<div class="container w-50 bg-primary mt-5 rounded shadow">
+    <div class="row align-items-md-stretch">
+        <div class="col bg-dark p-5 rounded-end">
+            <div class="text-end">
+                <img src="/static/Images/logo.png" width="100" alt="">
             </div>
+            <!--Login-->
+            <div class="d-grid">
+                <label class="form-label">Categoria</label>
+                <button class="btn btn-primary" onclick="RegistroCliente();">Cliente</button>
+                <br>
+                <button class="btn btn-primary" onclick="RegsitroEmpleado();">Empleado</button>
+                <br>
+                <button class="btn btn-primary" onclick="RegistroAdmin();">Administrador</button>
+                <br>
+            </div>
+            <form action="/register" method='POST'>
+                 <!--Formulario Cliente-->
+                <div id="registro_cliente" >
+                    <div class="mb-4">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="Text" class="form-control" name="nombre_cliente">
+                    </div>
+                    <div class="mb-4">
+                    <label class="form-label">Apellido Completo</label>
+                    <input type="Text" class="form-control" name="apellido_cliente">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Correo Electronico</label>
+                        <input type="Text" class="form-control" name="correo_cliente">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">User Name</label>
+                        <input type="text" class="form-control" name="username_cliente">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Direccion</label>
+                        <input type="Text" class="form-control" name="direccion_cliente">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Telefono</label>
+                        <input type="Text" class="form-control" name="telefono_cliente">
+                    </div>
+            
+                </div>
+                <!--Formulario Empleado-->
+                <div id="registro_empleado">
+                    <div class="mb-4">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="Text" class="form-control" name="nombe_empleado">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Apellido Completo</label>
+                        <input type="Text" class="form-control" name="apellido_empleado">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Correo Electronico</label>
+                        <input type="Text" class="form-control" name="correo_empleado">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">User Name</label>
+                            <input type="text" class="form-control" name="username_empleado">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Codigo</label>
+                            <input type="text" class="form-control" name="codigo_empleado">
+                    </div>
+                    
+                    
+                </div>
+                <!--Formulario Administrador-->
+                <div id="registro_admin">
+                    <div class="mb-4">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="Text" class="form-control" name="nombre_admin">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Apellido Completo</label>
+                        <input type="Text" class="form-control" name="apellido_admin">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Correo Electronico</label>
+                        <input type="Text" class="form-control" name="correo_admin">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">User Name</label>
+                            <input type="text" class="form-control" name="username_admin">
+                    </div>
+                    
+                </div>
+                <div class="g-recaptcha"  data-sitekey="{{ sitekey }}"></div> <br/>
+                <button class="btn btn-primary">Registrarse</button>
+                <a class="btn btn-primary" href="{{ url_for('python_user_routes.log') }}">Login</a>
+            </form>
         </div>
     </div>
-    <script src="/views/js/funcionalidad.js"></script>
+</div>
+<script src="{{ url_for('static', filename='js/acciones_registro.js' ) }}"></script>
 </body>
-
 </html>
