@@ -145,11 +145,13 @@ def register():
         if is_human(captcha_response):
             name = request.form['nombe_empleado']
             last_name = request.form['apellido_empleado']
+            nombre_completo = name + " " + last_name
             correo  = request.form['correo_empleado']
+            codigo  = request.form['codigo_empleado']
             
             session['username'] = username_empleado
              
-            empleado = Empleado(name,last_name,username_empleado,correo)
+            empleado = Empleado(nombre_completo,username_empleado,correo,codigo)
             
             db.session.add(empleado)
             db.session.commit()

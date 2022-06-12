@@ -14,10 +14,7 @@ def create():
     if 'admin' in session:
         pension_name = request.form["pension_name"]
 
-        pension = Pension(pension_name)
-
-        db.session.add(pension)
-        db.session.commit()
+        create_pension(pension_name)
         
         return redirect(url_for('python_admin_routes.info_empleado'))
 
@@ -46,3 +43,9 @@ def get_pension_id(pension):
 
 def cont_books():
     return Pension.query.count()
+
+def create_pension(pension_name):
+    pension = Pension(pension_name)
+
+    db.session.add(pension)
+    db.session.commit()

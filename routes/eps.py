@@ -14,10 +14,7 @@ def create():
     if 'admin' in session:
         eps_name = request.form["eps_name"]
 
-        eps = Eps(eps_name)
-
-        db.session.add(eps)
-        db.session.commit()
+        create_eps(eps_name)
         
         return redirect(url_for('python_admin_routes.info_empleado'))
 
@@ -43,3 +40,9 @@ def get_eps_id(eps):
 
 def get_eps():
     return Eps.query.all()
+
+def create_eps(eps_name):
+    eps = Eps(eps_name)
+
+    db.session.add(eps)
+    db.session.commit()

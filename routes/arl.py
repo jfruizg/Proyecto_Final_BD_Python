@@ -13,11 +13,8 @@ arl = Blueprint('python_arl_routes', __name__)
 def create():
     if 'admin' in session:
         arl_name = request.form["arl_name"]
+        create_arl(arl_name)
 
-        arl = Arl(arl_name)
-
-        db.session.add(arl)
-        db.session.commit()
         
         return redirect(url_for('python_admin_routes.info_empleado'))
 
@@ -44,6 +41,11 @@ def get_arl():
 def get_arl_id(arl):
     return Arl.query.filter_by(arl = arl).first().id
 
+def create_arl(arl_name):
+    arl = Arl(arl_name)
+
+    db.session.add(arl)
+    db.session.commit()
 
 def cont_books():
     return Arl.query.count()

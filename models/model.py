@@ -9,9 +9,9 @@ class Empleado(db.Model):
     __tablename__ = 'empleados'
 
     id = db.Column(db.Integer, primary_key=True)
+    codigo = db.Column(db.String(200), unique=true)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
-    name = db.Column(db.String(200))
-    last_name = db.Column(db.String(200))
+    name_completo = db.Column(db.String(200))
     email = db.Column(db.String(200))
     username = db.Column(db.String(200), unique=true)
     sueldo = db.Column(db.Integer)
@@ -20,11 +20,11 @@ class Empleado(db.Model):
     vacaciones = db.relationship('Vacacion')
     incapacidad = db.relationship('Incapcidad')
 
-    def __init__(self, name, last_name, username, email):
-        self.name = name
-        self.last_name = last_name
+    def __init__(self, name_completo, username, email, codigo):
+        self.name_completo = name_completo
         self.username = username
         self.email = email
+        self.codigo = codigo
 
 
 class EmpleadoNomina(db.Model):

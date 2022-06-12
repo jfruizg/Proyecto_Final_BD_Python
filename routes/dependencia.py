@@ -13,11 +13,8 @@ dependencia = Blueprint('python_dependencia_routes', __name__)
 def create():
     if 'admin' in session:
         adependencia_name = request.form["dependencia_name"]
-
         dependencia = Dependencia(adependencia_name)
-
-        db.session.add(dependencia)
-        db.session.commit()
+        
         
         return redirect(url_for('python_admin_routes.info_empleado'))
 
@@ -43,6 +40,12 @@ def get_dependencia():
 
 def get_dependencia_id(dependencia):
     return Dependencia.query.filter_by(dependencia = dependencia).first().id
+
+def create_dependencia(adependencia_name):
+    dependencia = Dependencia(adependencia_name)
+
+    db.session.add(dependencia)
+    db.session.commit()
 
 def cont_books():
     return Dependencia.query.count()

@@ -14,10 +14,7 @@ def create():
     if 'admin' in session:
         cargo_name = request.form["cargo_name"]
 
-        cargo = Cargo(cargo_name)
-
-        db.session.add(cargo)
-        db.session.commit()
+        create_cargo(cargo_name)
         
         return redirect(url_for('python_admin_routes.info_empleado'))
 
@@ -47,3 +44,9 @@ def get_cargo_id(cargo):
 
 def cont_books():
     return Cargo.query.count()
+
+def create_cargo(cargo_name):
+    cargo = Cargo(cargo_name)
+
+    db.session.add(cargo)
+    db.session.commit()

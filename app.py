@@ -55,6 +55,7 @@ con el blue print traemos la informacion que se va hacer en la routes
 "example" - es el nombre que se dio en el ruteo 
 
 """
+
 app.register_blueprint(user)
 app.register_blueprint(empleado)
 app.register_blueprint(cargo)
@@ -66,4 +67,3 @@ app.register_blueprint(eps)
 app.register_blueprint(author)
 app.register_blueprint(publicador)
 app.register_blueprint(book)
-app.register_blueprint(data)

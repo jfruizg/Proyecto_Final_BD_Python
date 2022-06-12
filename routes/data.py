@@ -1,6 +1,21 @@
-from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash
+import imp
+import json
+
+
+from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
+from pip._vendor import requests
+from sqlalchemy import false, true
+
+from routes.empleado import cont_empleados
+from routes.admin import all_admin
+from routes.book import cont_books
+from routes.movie import cont_movies
+
+import pandas as pd
+from models.model import Empleado, Cliente, Admin
 from utils.db import db
-import pandas as pd 
+
+
 
 data = Blueprint('python_data_routes', __name__)
 
