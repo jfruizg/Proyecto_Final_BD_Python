@@ -11,6 +11,7 @@ from routes.eps import eps
 from routes.author import author
 from routes.book import book
 from routes.publicadores import publicador
+from routes.data import data
 from connection import connections
 
 
@@ -65,3 +66,4 @@ app.register_blueprint(eps)
 app.register_blueprint(author)
 app.register_blueprint(publicador)
 app.register_blueprint(book)
+app.register_blueprint(data)

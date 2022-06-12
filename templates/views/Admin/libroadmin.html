@@ -154,24 +154,31 @@
                                         <input class="input is-medium" type="text" name="text_reviews_count" placeholder="Review Cont">
                                         <input class="input is-medium" type="text" name="publication_date" placeholder="PublicationDate">
                                         <br/>
-                                        <div>
-                                            <label class="form-label">Autores</label>
-                                            <select class="select" name="author_id">
-                                                {% for author in all_author%}
-                                                    <option>{{ author.author_complete_name }}</option>
-                                                {% endfor %}
-                                    
-                                            </select>
+                                        <div class="field">
+                                            <label class="label">Autor</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="author_id">
+                                                    {% for author in all_author%}
+                                                        <option>{{ author.author_complete_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label class="form-label">Publicadores</label>
-                                            <select class="select" name="publicador_id">
-                                                {% for publicador in all_publicadores%}
-                                                    <option>{{ publicador.name }}</option>
-                                                {% endfor %}
-                                    
-                                            </select>
+                                        <div class="field">
+                                            <label class="label">Publicador</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="publicador_id">
+                                                    {% for publicador in all_publicadores%}
+                                                        <option>{{ publicador.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
                                         </div>
+                                    
             
                                         <button class="button is-block is-primary is-fullwidth is-medium">
                                             save

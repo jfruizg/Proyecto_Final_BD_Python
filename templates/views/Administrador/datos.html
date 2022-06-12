@@ -17,41 +17,42 @@
 </head>
 <body>
     <nav class="navbar" id="nav_bar_admin">
-    <div class="container">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-            </a>
-            <span class="navbar-burger burger" data-target="navbarMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenu" class="navbar-menu">
-            <img src="/Imagenes/logo.png" style="width: 85px; height: 60px;">
-            <div class="navbar-end">
-                <a class="navbar-item is-active" href="/HTML/base.html" style="color: white;">
-                    Inicio
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+    
                 </a>
-                <a class="navbar-item" href="/HTML/empleadoadmin.html" style="color: white;">
-                    Empleado
-                </a>
-                <a class="navbar-item" href="/HTML/Clienteadmin.html" style="color: white;">
-                    Cliente
-                </a>
-                <a class="navbar-item" href="/HTML/libroadmin.html" style="color: white;">
-                    Libro
-                </a>
-                <a class="navbar-item" href="/HTML/peliculadmin.html" style="color: white;">
-                    Pelicula
-                </a>
-                <a class="navbar-item" style="color: white;" href="/HTML/datos.html">
-                    Datos
-                </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item is-active" href="{{ url_for('python_user_routes.home') }}">
+                        Inicio
+                    </a>
+                    <a class="navbar-item" href="{{ url_for('python_admin_routes.info_empleado') }}">
+                        Empleado
+                    </a>
+                    <a class="navbar-item">
+                        Cliente
+                    </a>
+                    <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_libro') }}">
+                        Libro
+                    </a>
+                    <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_pelicula') }}">
+                        Pelicula
+                    </a>
+                    <a class="navbar-item">
+                        Datos
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    </br>
 <br>
 <label>Reporte de NÓMINA</label>
 <select class="select">

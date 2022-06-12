@@ -38,6 +38,11 @@ def delete():
         db.session.commit()
 
 
+def get_dependencia():
+    return Dependencia.query.all()
+
+def get_dependencia_id(dependencia):
+    return Dependencia.query.filter_by(dependencia = dependencia).first().id
 
 def cont_books():
     return Dependencia.query.count()

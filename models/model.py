@@ -37,7 +37,14 @@ class EmpleadoNomina(db.Model):
     id_eps = db.Column(db.Integer, db.ForeignKey('eps.id'))
     id_arl = db.Column(db.Integer, db.ForeignKey('arls.id'))
     id_pension = db.Column(db.Integer, db.ForeignKey('pensiones.id'))
-
+    
+    def __init__(self, cod_empleado, id_dependencia, id_cargo, id_eps, id_arl, id_pension):
+        self.cod_empleado = cod_empleado
+        self.id_dependencia = id_dependencia
+        self.id_cargo = id_cargo
+        self.id_eps = id_eps
+        self.id_arl = id_arl
+        self.id_pension = id_pension
 
 class Dependencia(db.Model):
     __tablename__ = 'dependencias'

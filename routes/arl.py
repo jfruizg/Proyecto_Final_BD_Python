@@ -38,6 +38,12 @@ def delete():
         db.session.commit()
 
 
+def get_arl():
+    return Arl.query.all()
+
+def get_arl_id(arl):
+    return Arl.query.filter_by(arl = arl).first().id
+
 
 def cont_books():
     return Arl.query.count()

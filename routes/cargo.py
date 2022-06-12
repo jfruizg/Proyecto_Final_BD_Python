@@ -38,6 +38,12 @@ def delete():
         db.session.commit()
 
 
+def get_cargo():
+    return Cargo.query.all()
+
+def get_cargo_id(cargo):
+    return Cargo.query.filter_by(cargo = cargo).first().id
+    
 
 def cont_books():
     return Cargo.query.count()

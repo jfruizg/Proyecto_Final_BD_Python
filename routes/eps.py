@@ -38,6 +38,8 @@ def delete():
         db.session.commit()
 
 
+def get_eps_id(eps):
+    return Eps.query.filter_by(eps = eps).first().id
 
-def cont_books():
-    return Eps.query.count()
+def get_eps():
+    return Eps.query.all()

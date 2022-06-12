@@ -65,7 +65,7 @@
                 <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_pelicula') }}">
                     Pelicula
                 </a>
-                <a class="navbar-item">
+                <a class="navbar-item" >
                     Datos
                 </a>
             </div>
@@ -133,29 +133,49 @@
                             <div class="container is-fullhd">
 
                                 <article class="tile is-child notification is-info">
-                                    <p class="title">Datatables estilo Bulma</p>
+                                    <p class="title">Reporte Nomina Empleados</p>
                                 </article>
-                                <table id="example" class="table is-striped is-hoverable" style="width:100%">
+                                <table id="reporte_nomina" class="table is-striped is-hoverable" style="width:100%">
                                     <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Empleado id</th>
+                                            <th>nombre</th>
+                                            <th>apellido</th>
+                                            <th>username</th>
+                                            <th>cargo</th>
+                                            <th>dependencia</th>
+                                            <th>eps</th>
+                                            <th>arl</th>
+                                            <th>Delete</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    
+                                        {% for nomina in nomina_empleado %}
+                                            <tr>
+                                                <td>{{ nomina.Empleado.id }}</td>
+                                                <td>{{ nomina.Empleado.name }}</td>
+                                                <td>{{ nomina.Empleado.last_name }}</td>
+                                                <td>{{ nomina.Empleado.username }}</td>
+                                                <td>{{ nomina.Cargo.cargo }}</td>
+                                                <td>{{ nomina.Dependencia.dependencia }}</td>
+                                                <td>{{ nomina.Eps.eps }}</td>
+                                                <td>{{ nomina.Arl.arl }}</td>
+                                                <td><a href="{{ url_for('python_empleado_routes.delete_emp', id =nomina.Empleado.id) }}">Delete</a></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                     <tfoot>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Empleado id</th>
+                                            <th>nombre</th>
+                                            <th>apellido</th>
+                                            <th>username</th>
+                                            <th>cargo</th>
+                                            <th>dependencia</th>
+                                            <th>eps</th>
+                                            <th>arl</th>
+                                            <th>Delete</th>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -172,12 +192,84 @@
                               <div class="column is-8 is-offset-2 register">
                                 <div class="columns">
                                   <div class="column right has-text-centered">
-                                    <h1 class="title is-4">Arl</h1>
-                                    <p class="description">Registra una Arl</p>
-                                    <form action="/register_arl" method="POST">
-                                        <input class="input is-medium" type="text" name="arl_name" placeholder="Registra una ARL">
-                                        <br/>
-            
+                                    <h1 class="title is-4">Termina el proceso de agregar empleado</h1>
+                                    <p class="description">Registra los siguientes datos</p>
+                                  </br>
+                                    <form action="/register_nomina" method="POST">
+                                        <div class="field">
+                                            <label class="label">Empleado</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="empleado_id">
+                                                    {% for empleado in all_empleados%}
+                                                        <option>{{ empleado.username }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <label class="label">Arl</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="arl_id">
+                                                    {% for arl in all_arl%}
+                                                        <option>{{ arl.arl }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <label class="label">Cargo</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="cargo_id">
+                                                    {% for cargo in all_cargo%}
+                                                        <option>{{ cargo.cargo }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <label class="label">Eps</label>
+                                            <div class="control">
+                                              <div class="select">
+                                                <select name="eps_id">
+                                                    {% for eps in all_eps%}
+                                                        <option>{{ eps.eps }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <label class="label">Dependencia</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="dependencia_id">
+                                                    {% for dependencia in all_dependencia%}
+                                                        <option>{{ dependencia.dependencia }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <label class="label">Pension</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="pension_id">
+                                                    {% for pension in all_pension %}
+                                                        <option>{{ pension.pension }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <input class="input is-medium" type="text" name="empleado_sueldo" placeholder="Sueldo">
+                            
                                         <button class="button is-block is-primary is-fullwidth is-medium">
                                             save
                                         </button>
@@ -338,14 +430,14 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script async type="text/javascript" src="../js/bulma.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#example').DataTable();
+        $('#reporte_nomina').DataTable();
     });
 </script>
-<script async type="text/javascript" src="../js/bulma.js"></script>
 <script type="text/javascript">
 
     function cerrar_pestanas(){

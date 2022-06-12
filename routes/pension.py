@@ -38,6 +38,11 @@ def delete():
         db.session.commit()
 
 
+def get_pension():
+    return Pension.query.all()
+
+def get_pension_id(pension):
+    return Pension.query.filter_by(pension = pension).first().id
 
 def cont_books():
     return Pension.query.count()

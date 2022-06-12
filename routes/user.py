@@ -7,10 +7,12 @@ from flask import Blueprint, render_template, request, redirect, url_for, make_r
 from pip._vendor import requests
 from sqlalchemy import false, true
 
-from routes.empleado import guardar_empleado, cont_empleados
+from routes.empleado import cont_empleados
 from routes.admin import all_admin
 from routes.book import cont_books
 from routes.movie import cont_movies
+
+
 from models.model import Empleado, Cliente, Admin
 from utils.db import db
 
@@ -38,9 +40,7 @@ def home():
     if 'username' in session:
         username = session['username']
         print(username)
-        success_message = 'Bienvenido {}'.format(username)
-        flash(success_message)
-        return render_template('./views/Cliente/cliente.html')
+        return render_template('./views/Empleado/Empleado.html')
     elif 'client' in session:
         client = session['client']
         print(client)
@@ -61,10 +61,6 @@ def home():
 @user.route('/log')
 def log():
     return render_template('./views/User/login.html')
-
-@user.route('/admin_empleado')
-def empleado():
-    return render_template('./views/Admin/empleado.html')
 
 @user.route('/logout')
 def logout():
@@ -102,8 +98,6 @@ def login():
         print("por aca estoy")
         return redirect(url_for('python_user_routes.home'))
     
-    
-
 @user.route('/register', methods=['POST','GET'])
 def register():
     username_admin = request.form['username_admin']
@@ -153,11 +147,11 @@ def register():
             last_name = request.form['apellido_empleado']
             correo  = request.form['correo_empleado']
             
-            session['admin'] = username_admin
+            session['username'] = username_empleado
              
-            admin = Admin(username_admin,name,last_name,correo)
+            empleado = Empleado(name,last_name,username_empleado,correo)
             
-            db.session.add(admin)
+            db.session.add(empleado)
             db.session.commit()
         
             return redirect(url_for('python_user_routes.home'))
