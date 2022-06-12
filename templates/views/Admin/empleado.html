@@ -139,8 +139,7 @@
                                     <thead>
                                         <tr>
                                             <th>Empleado id</th>
-                                            <th>nombre</th>
-                                            <th>apellido</th>
+                                            <th>nombre completo</th>
                                             <th>username</th>
                                             <th>cargo</th>
                                             <th>dependencia</th>
@@ -153,8 +152,7 @@
                                         {% for nomina in nomina_empleado %}
                                             <tr>
                                                 <td>{{ nomina.Empleado.id }}</td>
-                                                <td>{{ nomina.Empleado.name }}</td>
-                                                <td>{{ nomina.Empleado.last_name }}</td>
+                                                <td>{{ nomina.Empleado.name_completo }}</td>
                                                 <td>{{ nomina.Empleado.username }}</td>
                                                 <td>{{ nomina.Cargo.cargo }}</td>
                                                 <td>{{ nomina.Dependencia.dependencia }}</td>

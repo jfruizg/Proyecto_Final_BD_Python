@@ -82,6 +82,9 @@ def get_empleados():
 def get_empleado_id(empleado):
     return Empleado.query.filter_by(username = empleado).first().id
 
+def get_empleado_code(empleado):
+    return Empleado.query.filter_by(codigo = empleado).first().id
+
 
 @empleado.route("/show_data")
 def show_data():
@@ -94,26 +97,14 @@ def data():
         data = pd.read_excel(file)
 
      
-        valores = data.values
-        cont = 5     
+        valores = data.values    
         crear_datos_empleado(valores)
-        for row in valores:
-            cont = cont + 1
-            codigo = row[0]
-            nombre = row[1]
-            dependencia = (row[2])
-            cargo = (row[3])
-            eps = (row[5])
-            arl = (row[6])
-            pension = (row[7])
-            username = f"empleado {codigo}"
-            correo = f"empleado {codigo}@gmail.com"
-            
-            create_empleado(nombre,username,correo,codigo)
-            create_empleado_nomina( get_empleado_id(username), get_dependencia_id(dependencia), get_cargo_id(cargo), get_eps_id(eps), get_arl_id(arl), get_pension_id(pension))
-           
+        create_empleados_data(valores)
+        create_empleado_nomina(valores)
         
-        return render_template("./views/Admin/datos.html")
+        print("Paso")
+        
+        return redirect(url_for('python_admin_routes.info_empleado'))
 
 
     return render_template("./views/Admin/datos.html")
@@ -125,12 +116,7 @@ def create_data(cargo,eps,arl,dependencia,pension):
     create_dependencia(dependencia)
     create_pension(pension)
     
-    
-def create_empleado_nomina(empleado_id, dependencia_id, cargo_id, eps_id, arl_id, pension_id):
-    new_emp_nomina = EmpleadoNomina(empleado_id, dependencia_id, cargo_id, eps_id, arl_id, pension_id)
-    db.session.add(new_emp_nomina)
-    db.session.commit()
-    
+   
 def create_empleado(nombre_completo,username_empleado,correo,codigo):
     empleado = Empleado(nombre_completo,username_empleado,correo,codigo)
             
@@ -171,8 +157,32 @@ def crear_datos_empleado(valores):
         pension.append(row[7])
     
     
-    data_crear_cargo(list(set(arl)))
+    data_crear_cargo(list(set(cargo)))
     data_crear_arl(list(set(arl)))
     data_crear_dependencia(list(set(dependencia)))
     data_crear_eps(list(set(eps)))
-    data_crear_pension(list(set(dependencia)))    
+    data_crear_pension(list(set(pension))) 
+       
+       
+def create_empleados_data(valores):
+    cont = 0
+    for row in valores:
+        cont = cont + 1
+        codigo = row[0]
+        nombre = row[1]
+        username = f"empleado {codigo}"
+        correo = f"empleado {codigo}@gmail.com"     
+        create_empleado(nombre,username,correo,codigo)  
+       
+def create_empleado_nomina(valores):
+    for row in valores:
+        empleado_id = get_empleado_code(row[0])
+        dependencia_id = get_dependencia_id(row[2])
+        cargo_id = get_cargo_id(row[3])
+        eps_id =  get_eps_id(row[5])
+        arl_id = get_arl_id(row[6])
+        pension_id = get_pension_id(row[7])
+       
+        new_emp_nomina = EmpleadoNomina(empleado_id, dependencia_id, cargo_id, eps_id, arl_id, pension_id)
+        db.session.add(new_emp_nomina)
+        db.session.commit()
