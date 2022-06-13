@@ -3,11 +3,13 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from routes.pension import create_pension, get_pension_id
 from utils.db import db
-from models.model import Empleado, EmpleadoNomina
+from models.model import Empleado, EmpleadoNomina, Pelicula
 from routes.arl import get_arl, get_arl_id, create_arl
 from routes.cargo import get_cargo, get_cargo_id, create_cargo
 from routes.dependencia import get_dependencia, get_dependencia_id, create_dependencia
 from routes.eps import eps, get_eps_id, create_eps
+from routes.genre import crear_genero, get_genre_id
+from routes.movie import crear_pelicula
 import pandas as pd
 
 
@@ -112,12 +114,10 @@ def data():
 @empleado.route('/data_dt', methods=['POST', 'GET'])
 def data_dt():
     file_name = request.form["upload_dat_file"]
-    file = open(file_name, "r")
-    for linea in file:
-        linea = linea.split("::")
-        titulo = linea[1]
-        
-        print("ID: " + linea[0] + " titulo: " + linea[1] + " generos: " + linea[2])
+    file = open(file_name, encoding="utf8")
+    create_gener_dat(file)
+    crear_libro_dat(file)
+    print("Listo")
     return redirect(url_for('python_admin_routes.info_empleado'))    
     
 
@@ -199,11 +199,28 @@ def create_empleado_nomina(valores):
         db.session.add(new_emp_nomina)
         db.session.commit()
         
-def create_genero(file):
-    genero = []
+def create_gener_dat(file):
+    genre = []
     for linea in file:
         linea = linea.split("::")
-        genero.append(linea[2])
+        genre.append(linea[2])
+    
+    genre_list = list(set(genre)) 
         
-        print("ID: " + linea[0] + " titulo: " + linea[1] + " generos: " + linea[2])
-            
+    for i in genre_list:
+        crear_genero(i)
+        
+      
+def crear_libro_dat(file):
+    for linea in file:
+        titulo = linea[1]
+        titulo_rep = titulo.split(" ")
+        anio = titulo_rep.pop()
+        gener_id = get_genre_id(linea[2])
+       
+        pelicula = Pelicula(titulo, anio, gener_id)
+        db.session.add(pelicula)
+        db.session.commit()
+        
+#titulo_rep = titulo.split(" ")
+#anio = titulo_rep.pop()

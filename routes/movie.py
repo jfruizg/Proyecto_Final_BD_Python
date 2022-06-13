@@ -16,11 +16,7 @@ def create():
         year = request.form["year_movie"]
         genre_id = Genre.query.filter_by(genre_name = (request.form["genre_id"])).first().id 
         
-    
-        movie = Pelicula(title, year,genre_id)
-
-        db.session.add(movie)
-        db.session.commit()
+        crear_pelicula(title, year,genre_id)
         
         return redirect(url_for('python_admin_routes.info_pelicula'))
         
@@ -41,6 +37,11 @@ def delete():
         db.session.delete(comment)
         db.session.commit()
 
+def crear_pelicula(title, year,genre_id):
+    movie = Pelicula(title, year,genre_id)
+
+    db.session.add(movie)
+    db.session.commit()
 
 
 def cont_movies():

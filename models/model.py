@@ -198,12 +198,12 @@ class Pelicula(db.Model):
     __tablename__ = 'peliculas'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    year = db.Column(db.Integer)
+    title = db.Column(db.Text)
+    year = db.Column(db.Text)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     
-    def __init__(self, title,year,genre_id):
+    def __init__(self, title, year, genre_id):
         self.title = title
         self.year = year
         self.genre_id = genre_id

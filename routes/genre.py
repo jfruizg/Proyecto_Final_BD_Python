@@ -12,10 +12,7 @@ def create():
     if 'admin' in session:
         genre = request.form["genre_complete_name"]
         
-        genre = Genre(genre)
-
-        db.session.add(genre)
-        db.session.commit()
+        crear_genero(genre)
         
         return render_template('./views/Admin/peliculadmin.html')
 
@@ -37,4 +34,12 @@ def delete():
         db.session.commit()
 
 
+def get_genre_id(genre):
+    return Genre.query.filter_by(genre_name = genre).first().id
 
+
+def crear_genero(genre):
+    genre = Genre(genre)
+
+    db.session.add(genre)
+    db.session.commit()
