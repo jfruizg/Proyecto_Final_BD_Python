@@ -59,7 +59,7 @@
                     <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_pelicula') }}">
                         Pelicula
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_dato') }}">
                         Datos
                     </a>
                 </div>
@@ -73,20 +73,18 @@
     
             </div>
             <div class="column is-9">
-                <nav class="breadcrumb nav-center" aria-label="breadcrumbs">
-                    <ul>
-                        <li><a onclick="inicio();">Inicio</a></li>
-                        <li><a onclick="agregar();">Agregar</a></li>
-                        <li><a onclick="datos();">Estadisticas</a></li>
-                        <li><a onclick="salud_pension();">Salud y pension</a></li>
-                    </ul>
-                </nav>
-                
+            
+         
             </div>
         </div>
     </div>
     <form class="" action="data" method="POST">
         <input type="file" name="upload_excel_file" value="">
+        <input type="submit" name="" value="submit">
+    </form>
+
+    <form class="" action="data_dt" method="POST">
+        <input type="file" name="upload_dat_file" value="">
         <input type="submit" name="" value="submit">
     </form>
     

@@ -109,6 +109,18 @@ def data():
 
     return render_template("./views/Admin/datos.html")
 
+@empleado.route('/data_dt', methods=['POST', 'GET'])
+def data_dt():
+    file_name = request.form["upload_dat_file"]
+    file = open(file_name, "r")
+    for linea in file:
+        linea = linea.split("::")
+        titulo = linea[1]
+        
+        print("ID: " + linea[0] + " titulo: " + linea[1] + " generos: " + linea[2])
+    return redirect(url_for('python_admin_routes.info_empleado'))    
+    
+
 def create_data(cargo,eps,arl,dependencia,pension):
     create_cargo(cargo)
     create_eps(eps)
@@ -186,3 +198,12 @@ def create_empleado_nomina(valores):
         new_emp_nomina = EmpleadoNomina(empleado_id, dependencia_id, cargo_id, eps_id, arl_id, pension_id)
         db.session.add(new_emp_nomina)
         db.session.commit()
+        
+def create_genero(file):
+    genero = []
+    for linea in file:
+        linea = linea.split("::")
+        genero.append(linea[2])
+        
+        print("ID: " + linea[0] + " titulo: " + linea[1] + " generos: " + linea[2])
+            

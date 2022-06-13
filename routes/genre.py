@@ -7,17 +7,17 @@ from utils.db import db
 
 genre = Blueprint('python_genre_routes', __name__)
 
-@genre.route('/create_moviee', methods=['POST','GET'])
+@genre.route('/register_genre', methods=['POST','GET'])
 def create():
     if 'admin' in session:
-        genre = request.form["genre"]
-        atiende = request.form["atiende"]
-
-
-        genre = Pelicula(genre, atiende)
+        genre = request.form["genre_complete_name"]
+        
+        genre = Genre(genre)
 
         db.session.add(genre)
         db.session.commit()
+        
+        return render_template('./views/Admin/peliculadmin.html')
 
 @genre.route('/show_movie')
 def show():
@@ -25,12 +25,13 @@ def show():
         movies = Genre.all()
         return render_template('./comment/show.html', movies=movies)
 
-
+def all_genre():
+    return Genre.query.all()
 
 @genre.route('/delete_movie/<id>')
 def delete():
     if 'admin' in session:
-        comment = Pelicula.query.get(id)
+        comment = Genre.query.get(id)
 
         db.session.delete(comment)
         db.session.commit()

@@ -41,11 +41,16 @@ def get_dependencia():
 def get_dependencia_id(dependencia):
     return Dependencia.query.filter_by(dependencia = dependencia).first().id
 
+def get_dependencia_name(dependencia):
+    return Dependencia.query.filter_by(id = dependencia).first().dependencia
+
 def create_dependencia(adependencia_name):
     dependencia = Dependencia(adependencia_name)
 
     db.session.add(dependencia)
     db.session.commit()
 
-def cont_books():
+def cont_dependencia():
     return Dependencia.query.count()
+
+

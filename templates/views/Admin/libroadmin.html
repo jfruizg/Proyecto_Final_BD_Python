@@ -65,7 +65,7 @@
                 <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_pelicula') }}">
                     Pelicula
                 </a>
-                <a class="navbar-item">
+                <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_dato') }}">
                     Datos
                 </a>
             </div>
@@ -101,28 +101,49 @@
                             <div class="container is-fullhd">
 
                                 <article class="tile is-child notification is-info">
-                                    <p class="title">Datatables estilo Bulma</p>
+                                    <p class="title">Tabla Libro</p>
                                 </article>
                                 <table id="example" class="table is-striped is-hoverable" style="width:100%">
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
+                                        <th>Nombre Libro</th>
+                                        <th>ISBN</th>
+                                        <th>Languaje code</th>
+                                        <th>Numero de paginas</th>
+                                        <th>Autor</th>
+                                        <th>Publicador</th>
+                                        <th>Raiting</th>
+                                        <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    
+                                        {% for libro in tabla %}
+                                            <tr>
+                                                <td>{{ libro.Libro.id }}</td>
+                                                <td>{{ libro.Libro.title }}</td>
+                                                <td>{{ libro.Libro.isbn }}</td>
+                                                <td>{{ libro.Libro.language_code }}</td>
+                                                <td>{{ libro.Libro.num_pages }}</td>
+                                                <td>{{ libro.Autor.author_complete_name }}</td>
+                                                <td>{{ libro.Publicador.name }}</td>
+                                                <td>{{ libro.Libro.avrege_raiting }}</td>
+                                                <td><a href="{{ url_for('python_book_routes.delete_book', id=libro.Libro.id) }}">Delete</a></td>
+                                                
+                                            </tr>
+                                        {% endfor %}     
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>id</th>
-                                        <th>name</th>
-                                        <th>last_name</th>
-                                        <th>username</th>
-                                        <th>usertipe</th>
+                                        <th>Nombre Libro</th>
+                                        <th>ISBN</th>
+                                        <th>Languaje code</th>
+                                        <th>Numero de paginas</th>
+                                        <th>Autor</th>
+                                        <th>Publicador</th>
+                                        <th>Raiting</th>
+                                        <th>Delete</th>
                                     </tr>
                                     </tfoot>
                                 </table>

@@ -50,6 +50,7 @@ def home():
         admin_insession = Admin.query.filter_by(username = username_admin)
         admins = all_admin()
         
+        
     
         return render_template('./views/Admin/index.html', admin = admin_insession, empleados = cont_empleados(), clientes = cont_clientes(), libros = cont_books(), peliculas = cont_movies())
     else:
@@ -116,6 +117,7 @@ def register():
             
             db.session.add(admin)
             db.session.commit()
+    
         
             return redirect(url_for('python_user_routes.home'))
         else:

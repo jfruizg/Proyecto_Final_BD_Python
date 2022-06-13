@@ -37,20 +37,14 @@ def create():
         return redirect(url_for('python_admin_routes.info_libro'))
 
 
-@book.route('/show_book')
-def show():
-    if 'admin' in session:
-        movies = Pelicula.all()
-        return render_template('./comment/show.html', movies=movies)
-
-
 @book.route('/delete_book/<id>')
-def delete():
+def delete_book(id):
     if 'admin' in session:
-        comment = Pelicula.query.get(id)
+        comment = Libro.query.get(id)
 
         db.session.delete(comment)
         db.session.commit()
+        return redirect(url_for('python_admin_routes.info_libro'))
 
 
 def cont_books():

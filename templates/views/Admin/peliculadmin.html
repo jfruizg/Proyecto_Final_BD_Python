@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin - Free Bulma template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Admin.css' ) }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">
+
+    <style>
+        table.dataTable thead,
+        table.dataTable tfoot {
+            background-color: hsl(171, 100%, 41%);
+        }
+
+        .table thead th,
+        .table tfoot th {
+            color: hsl(0, 0%, 96%);
+        }
+    </style>
+    <style type="text/css">
+        #agregar,
+        #genero{
+            display: none;
+        }
+    </style>
+
+</head>
+
+
+<nav class="navbar" id="nav_bar_admin">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item is-active" href="{{ url_for('python_user_routes.home') }}">
+                    Inicio
+                </a>
+                <a class="navbar-item" href="{{ url_for('python_admin_routes.info_empleado') }}">
+                    Empleado
+                </a>
+                <a class="navbar-item">
+                    Cliente
+                </a>
+                <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_libro') }}">
+                    Libro
+                </a>
+                <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_pelicula') }}">
+                    Pelicula
+                </a>
+                <a class="navbar-item">
+                    Datos
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+</br>
+</br>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-1 ">
+
+        </div>
+        <div class="column is-9">
+            <nav class="breadcrumb nav-center" aria-label="breadcrumbs">
+                <ul>
+                    <li><a onclick="inicio();">Inicio</a></li>
+                    <li><a onclick="agregar();">Agregar</a></li>
+                    <li><a onclick="genero();">Genero</a></li>
+                </ul>
+            </nav>
+            <section id="inicio">
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                Filters
+                            </p>
+                        </header>
+                        <section>
+                            <div class="container is-fullhd">
+
+                                <article class="tile is-child notification is-info">
+                                    <p class="title">Pelicula Tabla</p>
+                                </article>
+                                <table id="example" class="table is-striped is-hoverable" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>titullo</th>
+                                        <th>ano</th>
+                                        <th>genre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for movie in movies %}
+                                            <tr>
+                                                <td>{{ movie.Pelicula.id }}</td>
+                                                <td>{{ movie.Pelicula.title }}</td>
+                                                <td>{{ movie.Pelicula.year }}</td>
+                                                <td>{{ movie.Genre.genre_name }}</td>                 
+                                            </tr>
+                                        {% endfor %}  
+                                    
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>titullo</th>
+                                        <th>ano</th>
+                                        <th>genre</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <section id="agregar">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Pelicula</h1>
+                                    <p class="description">Registra una Pelicula</p>
+                                    <form action="/register_movie" method="POST">
+                                        <input class="input is-medium" type="text" name="titulol_movie" placeholder="Titulo">
+                                        <input class="input is-medium" type="text" name="year_movie" placeholder="Promedio de Raiting">
+                                        <br/>
+                                        <div class="field">
+                                            <label class="label">Genre</label>
+                                            <div class="control">
+                                              <div class="select is-normal">
+                                                <select name="genre_id">
+                                                    {% for genre in all_genre %}
+                                                        <option>{{ genre.genre_name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+            <section id="genero">
+                <div class="column">
+                    <div class="card">
+                    </br>
+                        <section class="container">
+                            <div class="columns is-multiline">
+                              <div class="column is-8 is-offset-2 register">
+                                <div class="columns">
+                                  <div class="column right has-text-centered">
+                                    <h1 class="title is-4">Genero</h1>
+                                    <p class="description">Registra un genero a una Pelicual</p>
+                                    <form action="/register_genre" method="POST">
+                                        <input class="input is-medium" type="text" name="genre_complete_name" placeholder="Nombre">
+                                        <br/>
+                                    
+            
+                                        <button class="button is-block is-primary is-fullwidth is-medium">
+                                            save
+                                        </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        </br>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bulma.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<script async type="text/javascript" src="../js/bulma.js"></script>
+<script type="text/javascript">
+
+    function cerrar_pestanas(){
+        document.getElementById('inicio').style.display = 'none';
+        document.getElementById('agregar').style.display = 'none';
+        document.getElementById('genero').style.display = 'none';
+    
+    }
+
+    function inicio() {
+        cerrar_pestanas()
+        document.getElementById('inicio').style.display = 'block';
+    }
+
+    function agregar() {
+        cerrar_pestanas()
+        document.getElementById('agregar').style.display = 'block';
+    }
+
+    function genero() {
+        cerrar_pestanas()
+        document.getElementById('genero').style.display = 'block';
+    }
+    
+
+
+
+
+</script>
+</body>
+</html>

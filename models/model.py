@@ -185,9 +185,13 @@ class Genre(db.Model):
     __tablename__ = 'genres'
 
     id = db.Column(db.Integer, primary_key=True)
-    genre_name = db.Column(db.String(250))
+    genre_name = db.Column(db.String(250), unique=true)
     pelicula = db.relationship("Pelicula")
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    
+    def __init__(self, genre_name):
+        self.genre_name = genre_name
+        
 
 
 class Pelicula(db.Model):
@@ -198,6 +202,11 @@ class Pelicula(db.Model):
     year = db.Column(db.Integer)
     genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    
+    def __init__(self, title,year,genre_id):
+        self.title = title
+        self.year = year
+        self.genre_id = genre_id
 
 
 class Autor(db.Model):
