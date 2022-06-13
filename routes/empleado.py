@@ -221,6 +221,44 @@ def crear_libro_dat(file):
         pelicula = Pelicula(titulo, anio, gener_id)
         db.session.add(pelicula)
         db.session.commit()
-        
-#titulo_rep = titulo.split(" ")
-#anio = titulo_rep.pop()
+ 
+
+def to_dict(row):
+    if row is None:
+        return None
+
+    rtn_dict = dict()
+    keys = row.__table__.columns.keys()
+    for key in keys:
+        rtn_dict[key] = getattr(row, key)
+    return rtn_dict 
+    
+@empleado.route('/excel_empleado', methods=['GET', 'POST'])        
+def exportar_empleado_excel():
+    data = get_empleados()
+    data_list = [to_dict(item) for item in data]
+    df = pd.DataFrame(data_list)
+    filename = "C:/Users/juanf/Documents/Universidad/Pr_BD/Proyecto_Final_BD_Python/export_empleados.xlsx"
+    print("Filename: "+filename)   
+    
+       
+    writer = pd.ExcelWriter(filename)
+    df.to_excel(writer, sheet_name='Registrados')
+    writer.save()
+    
+    return redirect(url_for('python_admin_routes.info_empleado')) 
+
+@empleado.route('/pdf_empleado', methods=['GET', 'POST'])        
+def exportar_empleado_pdf():
+    data = get_empleados()
+    data_list = [to_dict(item) for item in data]
+    df = pd.DataFrame(data_list)
+    filename = "C:/Users/juanf/Documents/Universidad/Pr_BD/Proyecto_Final_BD_Python/export_empleados.xlsx"
+    print("Filename: "+filename)   
+    
+       
+    writer = pd.ExcelWriter(filename)
+    df.to_excel(writer, sheet_name='Registrados')
+    writer.save()
+    
+    return redirect(url_for('python_admin_routes.info_empleado'))

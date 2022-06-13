@@ -14,6 +14,7 @@ from routes.genre import genre
 from routes.publicadores import publicador
 from routes.data import data
 from routes.movie import movie
+from routes.cliente import cliente
 from connection import connections
 
 
@@ -71,3 +72,4 @@ app.register_blueprint(publicador)
 app.register_blueprint(book)
 app.register_blueprint(genre)
 app.register_blueprint(movie)
+app.register_blueprint(cliente)

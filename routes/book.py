@@ -6,6 +6,7 @@ from models.model import Libro, Pelicula, Libro
 from routes.author import get_author_id
 from routes.publicadores import get_publicadores_id
 from utils.db import db
+import pandas as pd
 
 book = Blueprint('python_book_routes', __name__)
 
@@ -49,3 +50,33 @@ def delete_book(id):
 
 def cont_books():
     return Libro.query.count()
+
+def get_libros():
+    return Libro.query.all()
+
+
+def to_dict(row):
+    if row is None:
+        return None
+
+    rtn_dict = dict()
+    keys = row.__table__.columns.keys()
+    for key in keys:
+        rtn_dict[key] = getattr(row, key)
+    return rtn_dict
+
+
+@book.route('/excel_libro', methods=['GET', 'POST'])        
+def exportar_libro_pdf():
+    data = get_libros()
+    data_list = [to_dict(item) for item in data]
+    df = pd.DataFrame(data_list)
+    filename = "C:/Users/juanf/Documents/Universidad/Pr_BD/Proyecto_Final_BD_Python/export_libro.xlsx"
+    print("Filename: "+filename)   
+    
+       
+    writer = pd.ExcelWriter(filename)
+    df.to_excel(writer, sheet_name='Registrados')
+    writer.save()
+    
+    return redirect(url_for('python_admin_routes.info_empleado'))

@@ -133,7 +133,7 @@ def register():
             direccion  = request.form['direccion_cliente']
             telefono  = request.form['telefono_cliente']
         
-            session['client'] = username_cliente
+            session['admin'] = username_cliente
              
             cliente = Cliente(name,last_name,correo,direccion,username_cliente,telefono)
             
@@ -151,7 +151,7 @@ def register():
             correo  = request.form['correo_empleado']
             codigo  = request.form['codigo_empleado']
             
-            session['username'] = username_empleado
+            session['admin'] = username_empleado
              
             empleado = Empleado(nombre_completo,username_empleado,correo,codigo)
             

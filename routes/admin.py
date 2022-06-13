@@ -1,11 +1,12 @@
 import json
+from multiprocessing.connection import Client
 
 from flask import Blueprint, render_template, request, redirect, url_for, make_response, session, flash, json
 from pip._vendor import requests
 from sqlalchemy import false, true
 from sqlalchemy.dialects import mysql
 
-from models.model import Autor, Empleado, Libro,Genre,Admin, EmpleadoNomina,Dependencia,Arl,Cargo, Pelicula,Pension,Eps, Publicador
+from models.model import Autor, Cliente,Empleado, Libro,Genre,Admin, EmpleadoNomina,Dependencia,Arl,Cargo, Pelicula,Pension,Eps, Publicador
 from routes.author import all_authors
 from routes.publicadores import all_publicadores
 from utils.db import db
@@ -88,8 +89,15 @@ def info_dato():
     if admin_insesssion():
         return render_template('./views/Admin/datos.html')
     else:
-        return render_template("./views/Admin/index.html")       
-
+        return render_template("./views/Admin/index.html") 
+ 
+@admin.route('/info_cliente')         
+def info_cliente():
+    if admin_insesssion():
+        result = Cliente.query.all()
+        return render_template('./views/Admin/cliente.html', result = result)
+    else:
+        return render_template("./views/Admin/index.html")
 
 
 def admin_insesssion():

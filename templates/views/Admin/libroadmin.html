@@ -68,6 +68,9 @@
                 <a class="navbar-item"  href="{{ url_for('python_admin_routes.info_dato') }}">
                     Datos
                 </a>
+                <a class="navbar-item"  href="{{ url_for('python_user_routes.logout') }}">
+                    Salir
+                </a>
             </div>
         </div>
     </div>
@@ -151,6 +154,31 @@
                         </section>
                     </div>
                 </div>
+                <section>
+                    <div class="column">
+                        <div class="card">
+                        </br>
+                            <section class="container">
+                                <div class="columns is-multiline">
+                                  <div class="column is-8 is-offset-2 register">
+                                    <div class="columns">
+                                      <div class="column right has-text-centered">
+                                        <h1 class="title is-4">Exportar EXCEL</h1>
+                                        <form action="/excel_libro" method="POST">
+                                            <button class="button is-block is-primary is-fullwidth is-medium">
+                                                Exportar Excel
+                                            </button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                            </br>
+                        </div>
+                    </div>
+                </section>
+
             </section>
             <section id="agregar">
                 <div class="column">
