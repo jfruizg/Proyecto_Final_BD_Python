@@ -43,7 +43,7 @@ def crear_pelicula(title, year,genre_id):
 
     db.session.add(movie)
     db.session.commit()
-
+ 
 
 def cont_movies():
     return Pelicula.query.count()

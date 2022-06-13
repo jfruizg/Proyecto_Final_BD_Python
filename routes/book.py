@@ -29,11 +29,8 @@ def create():
         id_autor = get_author_id(autor)
         id_publicador = get_publicadores_id(publicador)
 
-        book = Libro(title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
+        create_libros(title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
                      text_reviews_count, id_publicador, id_autor)
-
-        db.session.add(book)
-        db.session.commit()
 
         return redirect(url_for('python_admin_routes.info_libro'))
 
@@ -80,3 +77,12 @@ def exportar_libro_pdf():
     writer.save()
     
     return redirect(url_for('python_admin_routes.info_empleado'))
+
+def create_libros(title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
+                     text_reviews_count, id_publicador, id_autor):
+    
+    book = Libro(title, avrege_raiting, isbn, isbn13, language_code, num_pages, raiting_count, text_reviews,
+                     text_reviews_count, id_publicador, id_autor)
+
+    db.session.add(book)
+    db.session.commit()

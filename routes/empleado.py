@@ -1,3 +1,4 @@
+import json
 from MySQLdb import IntegrityError
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -10,7 +11,11 @@ from routes.dependencia import get_dependencia, get_dependencia_id, create_depen
 from routes.eps import eps, get_eps_id, create_eps
 from routes.genre import crear_genero, get_genre_id
 from routes.movie import crear_pelicula
+from routes.author import create_author, get_author_id
+from routes.publicadores import create_publicador, get_publicadores_id
+from routes.book import create_libros
 import pandas as pd
+import pdfkit as pdfkit
 
 
 empleado = Blueprint('python_empleado_routes', __name__)
@@ -116,10 +121,17 @@ def data_dt():
     file_name = request.form["upload_dat_file"]
     file = open(file_name, encoding="utf8")
     create_gener_dat(file)
-    crear_libro_dat(file)
+    crear_pelicula(file)
     print("Listo")
     return redirect(url_for('python_admin_routes.info_empleado'))    
     
+@empleado.route('/data_json', methods=['POST', 'GET'])    
+def data_json():
+    create_authors()
+    create_libro()
+    print("Se acabo")
+    
+    return redirect(url_for('python_admin_routes.info_empleado'))  
 
 def create_data(cargo,eps,arl,dependencia,pension):
     create_cargo(cargo)
@@ -211,17 +223,15 @@ def create_gener_dat(file):
         crear_genero(i)
         
       
-def crear_libro_dat(file):
+def crear_pelicula_dat(file):
     for linea in file:
         titulo = linea[1]
         titulo_rep = titulo.split(" ")
         anio = titulo_rep.pop()
         gener_id = get_genre_id(linea[2])
+        crear_pelicula(titulo, anio,gener_id)
        
-        pelicula = Pelicula(titulo, anio, gener_id)
-        db.session.add(pelicula)
-        db.session.commit()
- 
+        
 
 def to_dict(row):
     if row is None:
@@ -248,17 +258,56 @@ def exportar_empleado_excel():
     
     return redirect(url_for('python_admin_routes.info_empleado')) 
 
-@empleado.route('/pdf_empleado', methods=['GET', 'POST'])        
-def exportar_empleado_pdf():
-    data = get_empleados()
-    data_list = [to_dict(item) for item in data]
-    df = pd.DataFrame(data_list)
-    filename = "C:/Users/juanf/Documents/Universidad/Pr_BD/Proyecto_Final_BD_Python/export_empleados.xlsx"
-    print("Filename: "+filename)   
+
+
+def data_crear_author(variable):
+    for i in variable:
+        create_author(i) 
+        
+def data_crear_publidor(variable):
+    for i in variable:
+        create_publicador(i)   
+        
+def create_libro():
+    file_name = request.form["upload_dat_file"]
+    autor = []
+    publicador = []
+    with open("books.json", encoding="utf8") as file:
+        data = json.load(file)
+        for client in data:
+            title = (client['title'])
+            autor = (client['authors'])
+            average_rating = (client['average_rating'])
+            isbn = (client['isbn'])
+            isbn13 = (client['isbn13'])
+            language_code = (client['language_code'])
+            num_pages = (client['num_pages'])
+            ratings_count = (client['ratings_count'])
+            text_reviews_count = (client['text_reviews_count'])
+            isbn = (client['isbn'])
+            publication_date = (client['publication_date'])
+            publicador = (client['publisher'])
+            
+            create_libros(title, average_rating, isbn, isbn13, language_code, num_pages, ratings_count, "text_reviews",
+                     text_reviews_count, get_publicadores_id(publicador), get_author_id(autor))
+            
+
+def create_authors():
+    file_name = request.form["upload_dat_file"]
+    autor = []
+    publicador = []
+    with open("books.json", encoding="utf8") as file:
+        data = json.load(file)
+        for client in data:
+            autor.append(client['authors'])
+            publicador.append(client['publisher'])
     
-       
-    writer = pd.ExcelWriter(filename)
-    df.to_excel(writer, sheet_name='Registrados')
-    writer.save()
+    autor_name = list(set(autor)) 
+    print(autor_name)  
+    publicador_name = list(set(publicador)) 
+    print(publicador_name) 
+    data_crear_author(autor_name)
+    data_crear_publidor(publicador_name)
     
-    return redirect(url_for('python_admin_routes.info_empleado'))
+    
+    

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin - Free Bulma template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Admin.css' ) }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bulma.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <style>
+        table.dataTable thead,
+        table.dataTable tfoot {
+            background-color: hsl(171, 100%, 41%);
+        }
+
+        .table thead th,
+        .table tfoot th {
+            color: hsl(0, 0%, 96%);
+        }
+    </style>
+    <style type="text/css">
+        #agregar,#salud_pension,
+        #datos,#arl,#eps,#dependencia,#cargo,#pension {
+            display: none;
+        }
+    </style>
+
+</head>
+</br>
+</br>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-1 ">
+        </div>
+        <div class="column is-9"
+
+            <section id="inicio">
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                Filters
+                            </p>
+                        </header>
+                        <section>
+                            <div class="container is-fullhd">
+
+                                <article class="tile is-child notification is-info">
+                                    <p class="title">Reporte Nomina Empleados</p>
+                                </article>
+                                <table id="reporte_nomina" class="table is-striped is-hoverable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Empleado id</th>
+                                            <th>nombre completo</th>
+                                            <th>username</th>
+                                            <th>cargo</th>
+                                            <th>dependencia</th>
+                                            <th>eps</th>
+                                            <th>arl</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for nomina in nomina_empleado %}
+                                            <tr>
+                                                <td>{{ nomina.Empleado.id }}</td>
+                                                <td>{{ nomina.Empleado.name_completo }}</td>
+                                                <td>{{ nomina.Empleado.username }}</td>
+                                                <td>{{ nomina.Cargo.cargo }}</td>
+                                                <td>{{ nomina.Dependencia.dependencia }}</td>
+                                                <td>{{ nomina.Eps.eps }}</td>
+                                                <td>{{ nomina.Arl.arl }}</td>
+                                                <td><a href="{{ url_for('python_empleado_routes.delete_emp', id =nomina.Empleado.id) }}">Delete</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Empleado id</th>
+                                            <th>nombre</th>
+                                            <th>apellido</th>
+                                            <th>username</th>
+                                            <th>cargo</th>
+                                            <th>dependencia</th>
+                                            <th>eps</th>
+                                            <th>arl</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

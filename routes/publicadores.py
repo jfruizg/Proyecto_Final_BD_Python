@@ -14,12 +14,7 @@ def create():
     if 'admin' in session:
         name = request.form["publicador_name"]
         
-
-        publicador = Publicador(name)
-
-        db.session.add(publicador)
-        db.session.commit()
-        
+        create_book(name)
         return redirect(url_for('python_admin_routes.info_libro'))
 
 @publicador.route('/show_publicador')
@@ -48,3 +43,9 @@ def get_publicadores_id(name):
 
 def cont_books():
     return Publicador.query.count()
+
+def create_publicador(name):
+    publicador = Publicador(name)
+
+    db.session.add(publicador)
+    db.session.commit()

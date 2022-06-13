@@ -78,6 +78,7 @@ def info_libro():
     publicadores = all_publicadores()
     
     results = db.session.query(Libro,Autor,Publicador).join(Autor,Publicador)
+
     
     if admin_insesssion():
         return render_template('./views/Admin/libroadmin.html', empleados = cont_empleados() ,all_author = authors, all_publicadores=publicadores, tabla = results)

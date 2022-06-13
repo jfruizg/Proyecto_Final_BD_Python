@@ -213,7 +213,7 @@ class Autor(db.Model):
     __tablename__ = 'autores'
 
     id = db.Column(db.Integer, primary_key=True)
-    author_complete_name = db.Column(db.String(200))
+    author_complete_name = db.Column(db.Text)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     pelicula = db.relationship("Libro")
 
@@ -225,7 +225,7 @@ class Publicador(db.Model):
     __tablename__ = 'publicadores'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200))
+    name = db.Column(db.Text)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     pelicula = db.relationship("Libro")
 
@@ -237,16 +237,16 @@ class Libro(db.Model):
     __tablename__ = 'libros'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
-    avrege_raiting = db.Column(db.String(100))
-    isbn = db.Column(db.String(100), unique=True)
-    isbn13 = db.Column(db.String(100), unique=True)
-    language_code = db.Column(db.String(100))
-    num_pages = db.Column(db.String(100))
-    raiting_count = db.Column(db.String(100))
-    text_reviews = db.Column(db.String(100))
-    text_reviews_count = db.Column(db.String(100))
-    publication_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    title = db.Column(db.Text)
+    avrege_raiting = db.Column(db.Text)
+    isbn = db.Column(db.String(200), unique=True)
+    isbn13 = db.Column(db.String(200), unique=True)
+    language_code = db.Column(db.Text)
+    num_pages = db.Column(db.Text)
+    raiting_count = db.Column(db.Text)
+    text_reviews = db.Column(db.Text)
+    text_reviews_count = db.Column(db.Text)
+    publication_date = db.Column(db.Text)
     created_date = db.Column(db.DateTime, default=datetime.datetime.now())
     publisher_id = db.Column(db.Integer, db.ForeignKey('publicadores.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('autores.id'))

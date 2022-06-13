@@ -14,10 +14,7 @@ def create():
     if 'admin' in session:
         author_complete_name = request.form["author_complete_name"]
 
-        autor = Autor(author_complete_name)
-
-        db.session.add(autor)
-        db.session.commit()
+        create_author(author_complete_name)
         
         return redirect(url_for('python_admin_routes.info_libro'))
 
@@ -45,3 +42,9 @@ def get_author_id(author_complete_name):
 
 def cont_books():
     return Autor.query.count()
+
+def create_author(author_complete_name):
+    autor = Autor(author_complete_name)
+
+    db.session.add(autor)
+    db.session.commit()
